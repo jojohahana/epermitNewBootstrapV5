@@ -53,15 +53,10 @@
                 <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/logo.png') }}" alt=""></a>
                   <ul class="landing-menu nav nav-pills">
                     <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../support/home.html" target="_blank">Support</a></li>
-                    <li class="nav-item">
-                      <form class="form-inline" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSe6hKUXw_By-pg7yabL0FxoTM02ZPTxoXy8PE3yboRuUCuyeA/viewform">
-                        <button class="nav-link">Hire Us</button>
-                      </form>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../document/index.htm" target="_blank">Document</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">E-Permit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demo">Form Cuti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demo">Form Sakit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Check Izin & Cuti</a></li>
                   </ul>
                   <!-- Button Purchase Non Aktifikan karna ga perlu  -->
                   <!-- <div class="buy-block"><a class="btn-landing" href="../../index.htm?_ga=2.23600954.1414692404.1631602989-185459218.1631602988" target="_blank">Purchase</a>
@@ -90,7 +85,7 @@
               </div>
             </div>
           </div>
-          <div class="position-block">   
+          <div class="position-block">
             <div class="circle1 opicity3"></div>
             <div class="star"><i class="fa fa-asterisk"></i></div>
             <div class="star star1"><i class="fa fa-asterisk"></i></div>
@@ -100,13 +95,13 @@
             <div class="star star5 opicity3"> <i class="fa fa-times"></i></div>
             <ul class="animat-block">
               <li><img class="img-fluid img-parten top-parten" src="{{ asset('vendor/images/landing/landing-home/home-position/img-parten.png') }}" alt="">
-                <div><img class="img-fluid img1 v-align-t m-t-30" src="{{ asset('vendor/images/landing/landing-home/home-position/img-1.jpg') }}" alt=""><img class="img-fluid img2 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/img-2.jpg') }}" alt=""><img class="img-fluid img3 v-align-b" src="{{ asset('vendor/images/landing/landing-home/home-position/img-3.jpg') }}" alt=""><img class="img-fluid img4 v-align-b" src="{{ asset('vendor/images/landing/landing-home/home-position/img-4.jpg') }}" alt=""></div>
+                <div><img class="img-fluid img1 v-align-t m-t-30" src="{{ asset('vendor/images/landing/landing-home/home-position/image10.png') }}" alt=""><img class="img-fluid img2 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/image2.png') }}" alt=""><img class="img-fluid img3 v-align-b" src="{{ asset('vendor/images/landing/landing-home/home-position/image3.png') }}" alt=""><img class="img-fluid img4 v-align-b" src="{{ asset('vendor/images/landing/landing-home/home-position/image4.png') }}" alt=""></div>
               </li>
               <li>
-                <div><img class="img-fluid img5" src="{{ asset('vendor/images/landing/landing-home/home-position/img-5.png') }}" alt=""><img class="img-fluid img6 v-align-c" src="{{ asset('vendor/images/landing/landing-home/home-position/img-6.jpg') }}" alt=""></div>
+                <div><img class="img-fluid img5" src="{{ asset('vendor/images/landing/landing-home/home-position/image5.png') }}" alt=""><img class="img-fluid img6 v-align-c" src="{{ asset('vendor/images/landing/landing-home/home-position/image6.png') }}" alt=""></div>
               </li>
               <li><img class="img-fluid img-parten bottom-parten" src="{{ asset('vendor/images/landing/landing-home/home-position/img-parten.png') }}" alt="">
-                <div><img class="img-fluid img7 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/img-7.jpg') }}" alt=""><img class="img-fluid img8 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/img-8.jpg') }}" alt=""><img class="img-fluid img9" src="{{ asset('vendor/images/landing/landing-home/home-position/img-9.jpg') }}" alt=""></div>
+                <div><img class="img-fluid img7 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/image7.png') }}" alt=""><img class="img-fluid img8 v-align-t" src="{{ asset('vendor/images/landing/landing-home/home-position/image8.png') }}" alt=""><img class="img-fluid img9" src="{{ asset('vendor/images/landing/landing-home/home-position/image1.png') }}" alt=""></div>
               </li>
             </ul>
           </div>
@@ -120,7 +115,7 @@
               </div>
               <div class="col-md-6 col-sm-10">
                 <div class="footer-contain">
-                  <p class="mb-0">Copyright 2021-22 © viho All rights reserved.                       </p>
+                  <p class="mb-0">Copyright 2022 - Yohana Briliant Christanti.                       </p>
                 </div>
               </div>
             </div>
@@ -135,7 +130,7 @@
     <script src="{{ asset('vendor/js/icons/feather-icon/feather.min.js') }}"></script>
     <script src="{{ asset('vendor/js/icons/feather-icon/feather-icon.js') }}"></script>
     <!-- Sidebar jquery-->
-    
+
     <script src="{{ asset('vendor/js/config.js') }}"></script>
     <!-- Bootstrap js-->
     <script src="{{ asset('vendor/js/bootstrap/popper.min.js') }}"></script>

@@ -53,15 +53,10 @@
                 <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/logo.png') }}" alt=""></a>
                   <ul class="landing-menu nav nav-pills">
                     <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../support/home.html" target="_blank">Support</a></li>
-                    <li class="nav-item">
-                      <form class="form-inline" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSe6hKUXw_By-pg7yabL0FxoTM02ZPTxoXy8PE3yboRuUCuyeA/viewform">
-                        <button class="nav-link">Hire Us</button>
-                      </form>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../document/index.htm" target="_blank">Document</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">E-Permit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demo">Form Cuti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demo">Form Sakit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Check Izin & Cuti</a></li>
                   </ul>
                   <!-- Button Purchase Non Aktifikan karna ga perlu  -->
                   <!-- <div class="buy-block"><a class="btn-landing" href="../../index.htm?_ga=2.23600954.1414692404.1631602989-185459218.1631602988" target="_blank">Purchase</a>
@@ -120,6 +115,9 @@
     <script src="{{ asset('vendor/js/landing_sticky.js') }}"></script>
     <script src="{{ asset('vendor/js/landing.js') }}"></script>
     <script src="{{ asset('vendor/js/jarallax_libs/libs.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/moment.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterange-picker.custom.js') }}"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>
