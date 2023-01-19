@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Leave')
+@section('title', 'Izin Cuti')
 @section('title-content', 'FORM CUTI KARYAWAN')
 
 @section('content')

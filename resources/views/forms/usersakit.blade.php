@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'Leave')
+@section('title', 'Izin Sakit')
 @section('title-content', 'FORM SAKIT KARYAWAN')
 
 @section('content')

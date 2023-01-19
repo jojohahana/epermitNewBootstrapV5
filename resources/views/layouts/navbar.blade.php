@@ -50,7 +50,7 @@
           <div class="custom-container">
             <div class="row">
               <div class="col-12">
-                <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/logo.png') }}" alt=""></a>
+                <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/LogoEpermit.png') }}" alt=""></a>
                   <ul class="landing-menu nav nav-pills">
                     <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('/epermit') }}">E-Permit</a></li>
@@ -95,6 +95,21 @@
             </div>
           </div>
           <!-- Container-fluid Ends-->
+          {{-- Start Footer  --}}
+          <div class="sub-footer">
+            <div class="custom-container">
+              <div class="row">
+                <div class="col-md-6 col-sm-2">
+                  <div class="footer-contain"><img class="img-fluid" src="../asset/images/logo/logo.png" alt=""></div>
+                </div>
+                <div class="col-md-6 col-sm-10">
+                  <div class="footer-contain">
+                    <p class="mb-0">Developed with Love - Final Project 2023</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
