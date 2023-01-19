@@ -53,9 +53,9 @@
                 <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/logo.png') }}" alt=""></a>
                   <ul class="landing-menu nav nav-pills">
                     <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
-                    <li class="nav-item"><a class="nav-link" href="#home">E-Permit</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Form Cuti</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Form Sakit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('/epermit') }}">E-Permit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formcuti') }}">Form Cuti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formsakit') }}">Form Sakit</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Check Izin & Cuti</a></li>
                   </ul>
                   <!-- Button Purchase Non Aktifikan karna ga perlu  -->
@@ -85,7 +85,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header pb-0">
-                    <h5>@yield('title-content')</h5>
+                    <h5 class="mx-auto text-center pb-5">@yield('title-content')</h5>
                   </div>
                   <div class="card-body">
                     @yield('content')

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/epermit', function() {
-    return view('/maindash');
+Route::controller(PermitController::class)->group(function () {
+    Route::get('/epermit', 'dashEpermit')->name('/epermit');
+    Route::get('epermit/formcuti', 'indexCuti')->name('epermit/formcuti');
+    Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
 });
 
 Route::get('/test', function() {

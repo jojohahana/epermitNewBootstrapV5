@@ -9,7 +9,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('vendor/images/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('vendor/images/favicon.png') }}" type="image/x-icon">
-    <title>EPERMIT TEST</title>
+    <title>EPERMIT - TRIMITRA</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="../../css2.css?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
@@ -50,12 +50,12 @@
           <div class="custom-container">
             <div class="row">
               <div class="col-12">
-                <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/logo.png') }}" alt=""></a>
+                <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)"> <img class="img-fluid" src="{{ asset('vendor/images/logo/LogoEpermit.png') }}" alt=""></a>
                   <ul class="landing-menu nav nav-pills">
                     <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
-                    <li class="nav-item"><a class="nav-link" href="#home">E-Permit</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Form Cuti</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#demo">Form Sakit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('/epermit') }}">E-Permit</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formcuti') }}">Form Cuti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formsakit') }}">Form Sakit</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Check Izin & Cuti</a></li>
                   </ul>
                   <!-- Button Purchase Non Aktifikan karna ga perlu  -->
@@ -79,7 +79,7 @@
                     <!-- <h1>E-PERMIT</h1> -->
                     <h1 class="">Ajukan Izin & Cuti Secara Online</h1>
                     <h5>Perhatikan maksimal pengajuan form sebelum mengajukan permintaan</h5>
-                    <div class="btn-group p-2"><a class="btn-landing btn-lg" href="#" target="_blank">AJUKAN</a><a class="btn-landing btn-secondary btn-lg ms-3" href="#" target="_blank">CHECK</a></div>
+                    {{-- <div class="btn-group p-2"><a class="btn-landing btn-lg" href="#" target="_blank">AJUKAN</a><a class="btn-landing btn-secondary btn-lg ms-3" href="#" target="_blank">CHECK</a></div> --}}
                   </div>
                 </div>
               </div>
