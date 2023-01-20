@@ -141,7 +141,7 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>
-    <script src="{{ asset('vendor/js/theme-customizer/customizer.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/js/theme-customizer/customizer.js') }}"></script> --}}
     <!-- login js-->
     <!-- Plugin used-->
   </body>
