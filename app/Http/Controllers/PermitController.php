@@ -17,4 +17,8 @@ class PermitController extends Controller
     public function indexSakit() {
         return view('forms.usersakit');
     }
+
+    public function indexCheck() {
+        return view('forms.checkcuti');
+    }
 }

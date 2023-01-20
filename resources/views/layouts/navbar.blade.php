@@ -56,7 +56,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('/epermit') }}">E-Permit</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formcuti') }}">Form Cuti</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('epermit/formsakit') }}">Form Sakit</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Check Izin & Cuti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('epermit/checkpermit') }}">Check Izin & Cuti</a></li>
                   </ul>
                   <!-- Button Purchase Non Aktifikan karna ga perlu  -->
                   <!-- <div class="buy-block"><a class="btn-landing" href="../../index.htm?_ga=2.23600954.1414692404.1631602989-185459218.1631602988" target="_blank">Purchase</a>
@@ -133,9 +133,15 @@
     <script src="{{ asset('vendor/js/datepicker/daterange-picker/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterangepicker.js') }}"></script>
     <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterange-picker.custom.js') }}"></script>
+    <script src="{{ asset('vendor/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/select2/select2-custom.js') }}"></script>
+    <script src="{{ asset('vendor/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('vendor/js/tooltip-init.js') }}"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>
+    <script src="{{ asset('vendor/js/theme-customizer/customizer.js') }}"></script>
     <!-- login js-->
     <!-- Plugin used-->
   </body>

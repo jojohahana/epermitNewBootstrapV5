@@ -22,6 +22,7 @@ Route::controller(PermitController::class)->group(function () {
     Route::get('/epermit', 'dashEpermit')->name('/epermit');
     Route::get('epermit/formcuti', 'indexCuti')->name('epermit/formcuti');
     Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
+    Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
 });
 
 Route::get('/test', function() {
