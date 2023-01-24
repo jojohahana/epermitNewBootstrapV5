@@ -49,7 +49,7 @@
                     {{-- <div class="daterange-card"> --}}
                         <div class="theme-form">
                             <div class="form-group">
-                                <input type="text" class="form-control digits" name="birthdate" value="01/01/2023">
+                                <input type="text" class="form-control digits" name="daterange" value="01/01/2023">
                             </div>
                         </div>
                     {{-- </div> --}}

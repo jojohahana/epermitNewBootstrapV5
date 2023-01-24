@@ -16943,7 +16943,8 @@ footer {
   fill: #24695c; }
 
 .daterangepicker td.available:hover, .daterangepicker th.available:hover {
-  background-color: #24695c; }
+  background-color: #24695c;
+  display: grid;}
 
 .datepicker--day-name {
   color: #000;

@@ -28,6 +28,7 @@
     <!-- Plugins css start-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/owlcarousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/bootstrap.css') }}">
