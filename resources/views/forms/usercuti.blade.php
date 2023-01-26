@@ -6,11 +6,14 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form action="" class="needs-validation" novalidate="">
+        <form action="{{ url('formcuti/getusers')}}" class="needs-validation" method="post">
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="nik" onkeyup="getNik(this.value)" value="" type="text" placeholder="Enter NIK">
+                    <input class="form-control" id="nik" onkeyup="getNik(this.value)" value="" @error('nik') is-invalid @enderror autofocus type="text" placeholder="Enter NIK">
+                    @error(nik)
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
