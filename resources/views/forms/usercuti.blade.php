@@ -9,40 +9,34 @@
         <form class="needs-validation" novalidate="">
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
-                    <label class="form-label" for="validationCustom01">NIK</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
+                    <input class="form-control" id="user_id" type="text" value="" required="">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Departemen</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Posisi</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
             </div>
             <div class="col pb-4">
                 <h6>Jenis Cuti</h6>
-                <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
-                  <div class="radio radio-primary">
-                    <input id="radioinline1" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline1">Cuti Tahunan</label>
-                  </div>
-                  <div class="radio radio-primary">
-                    <input id="radioinline2" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline2">Cuti Besar</label>
-                  </div>
-                  <div class="radio radio-primary">
-                    <input id="radioinline3" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline3">Cuti Khusus</label>
-                  </div>
-                </div>
+                <select class="js-example-basic-single col-sm-12" id="leaves_type">
+                    <optgroup label="Cuti"></optgroup>
+                        <option value="CT">Tahunan</option>
+                        <option value="CB">Besar</option>
+                        <option value="CK">Khusus</option>
+                </select>
             </div>
+
             <div class="row date-range-picker">
                 <h6>Tanggal Cuti</h6>
                 <div class="col-xl-6">
@@ -58,13 +52,19 @@
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Cuti Diambil</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Sisa Cuti</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
+                </div>
+            </div>
+            <div class="col pb-4">
+                <h6>Keterangan Cuti</h6>
+                <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
+                    <textarea id="leave_reason" class="form-control" placeholder="Tulis alasan cuti anda disini" cols="30" rows="10"></textarea>
                 </div>
             </div>
             <div class="pt-3">
@@ -84,22 +84,4 @@
         </ul>
     </div>
 </div>
-@section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
-    function isiUser(){
-        var nik = $("#nik").val();
-        $.ajax({
-            url: 'ajax.php';
-            data:"nik="+nik,
-        }).success(function (data) {
-            var json = data,
-            obj = JSON.parse(json);
-            $('#nama').val(obj.nama);
-            $('#dept').val(obj.dept);
-            $('#posisi').val(pbj.posisi);
-        });
-    }
-</script>
-@endsection
 @endsection

@@ -11,22 +11,38 @@
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK</label>
                     <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Departemen</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Posisi</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
-                    <div class="valid-feedback">Looks good!</div>
+                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
                 </div>
             </div>
-
+            {{-- <div class="col pb-4">
+                <h6>Jenis Cuti</h6>
+                <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
+                  <div class="radio radio-primary">
+                    <input id="radioinline1" type="radio" name="radio1" value="option1">
+                    <label class="mb-0" for="radioinline1">Cuti Tahunan</label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <input id="radioinline2" type="radio" name="radio1" value="option1">
+                    <label class="mb-0" for="radioinline2">Cuti Besar</label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <input id="radioinline3" type="radio" name="radio1" value="option1">
+                    <label class="mb-0" for="radioinline3">Cuti Khusus</label>
+                  </div>
+                </div>
+            </div> --}}
             <div class="row date-range-picker">
                 <h6>Tanggal Izin</h6>
                 <div class="col-xl-6">

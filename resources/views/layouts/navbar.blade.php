@@ -29,6 +29,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/owlcarousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/select2.css') }}">
+
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/bootstrap.css') }}">
@@ -142,8 +144,6 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>
-    {{-- <script src="{{ asset('vendor/js/theme-customizer/customizer.js') }}"></script> --}}
-    <!-- login js-->
-    <!-- Plugin used-->
+    @yield('script')
   </body>
 </html>

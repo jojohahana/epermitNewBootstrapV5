@@ -15,6 +15,12 @@
             <input id="radioinline2" type="radio" name="radio1" value="option1">
             <label class="mb-0" for="radioinline2">Izin Sakit</label>
           </div>
+          <div class="col-md-3 pt-3">
+            <h6>NIK</h6>
+            {{-- <label class="form-label" for="validationCustom01">NIK</label> --}}
+            <input class="form-control" id="validationCustom01" type="text" value="" required="" placeholder="Masukkan NIK Anda">
+            <div class="valid-feedback">Looks good!</div>
+          </div>
         </div>
         <div class="col-md-3 pt-3">
           <h6>NIK</h6>
