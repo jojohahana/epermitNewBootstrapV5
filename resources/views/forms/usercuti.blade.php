@@ -14,15 +14,15 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Departemen</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Posisi</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
             </div>
@@ -58,12 +58,12 @@
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Cuti Diambil</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Sisa Cuti</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
             </div>
@@ -84,4 +84,22 @@
         </ul>
     </div>
 </div>
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function isiUser(){
+        var nik = $("#nik").val();
+        $.ajax({
+            url: 'ajax.php';
+            data:"nik="+nik,
+        }).success(function (data) {
+            var json = data,
+            obj = JSON.parse(json);
+            $('#nama').val(obj.nama);
+            $('#dept').val(obj.dept);
+            $('#posisi').val(pbj.posisi);
+        });
+    }
+</script>
+@endsection
 @endsection

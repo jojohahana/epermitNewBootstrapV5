@@ -16,6 +16,11 @@
             <label class="mb-0" for="radioinline2">Izin Sakit</label>
           </div>
         </div>
+        <div class="col-md-3 pt-3">
+          <h6>NIK</h6>
+          <input class="form-control" id="validationCustom01" type="text" value="" required="" placeholder="Masukkan NIK Anda">
+          <div class="valid-feedback">Looks good!</div>
+        </div>
     </div>
     <div class="pt-3 pb-6">
         <button class="btn btn-primary" type="submit">CHECK IZIN</button>
