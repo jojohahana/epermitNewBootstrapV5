@@ -39,6 +39,8 @@
     <link id="color" rel="stylesheet" href="{{ asset('vendor/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/responsive.css') }}">
+    {{-- Include Ajax  --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body class="landing-wrraper">
     <!-- tap on top starts-->

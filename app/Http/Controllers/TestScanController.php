@@ -17,6 +17,8 @@ class TestScanController extends Controller
         //
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,9 +35,11 @@ class TestScanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function ajaxUser(Request $request)
     {
-        //
+        $data = TestScan::where('nik', $nik)->first();
+
+        return json_encode($data);
     }
 
     /**

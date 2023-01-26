@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermitController;
+use App\Http\Controllers\TestScanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::controller(PermitController::class)->group(function () {
     Route::get('epermit/formcuti', 'indexCuti')->name('epermit/formcuti');
     Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
+});
+
+Route::controller(TestScanController::class)->group(function () {
+    Route::get('formcuti/getusers', 'ajaxUser')->name('formcuti/getusers');
 });
 
 Route::get('/test', function() {
