@@ -10,10 +10,11 @@
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="nik" onkeyup="getNik(this.value)" value="" @error('nik') is-invalid @enderror autofocus type="text" placeholder="Enter NIK">
-                    @error(nik)
+                    <input class="form-control" id="nik" onkeyup="autofill()" autofocus type="text" placeholder="Enter NIK">
+                    {{-- <input class="form-control" id="nik" onkeyup="getNik(this.value)" value="" @error('nik') is-invalid @enderror autofocus type="text" placeholder="Enter NIK"> --}}
+                    {{-- @error(nik)
                         <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    @enderror --}}
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
@@ -44,11 +45,11 @@
                 <h6>Tanggal Cuti <span class="text-danger">*</span></h6>
                 <div class="col-xl-6">
                     {{-- <div class="daterange-card"> --}}
-                        <div class="theme-form">
+                        {{-- <div class="theme-form"> --}}
                             <div class="form-group">
-                              <input class="form-control digits" type="text" name="daterange" value="01/15/2017 - 02/15/2017">
+                              <input class="form-control digits" type="text" name="datetimepicker" value="01/15/2017 - 02/15/2017">
                             </div>
-                        </div>
+                        {{-- </div> --}}
                     {{-- </div> --}}
                 </div>
             </div>
@@ -65,7 +66,7 @@
                 </div>
             </div>
             <div class="col pb-4">
-                <h6>Keterangan Cuti</h6>
+                <h6>Keterangan Cuti <span class="text-danger">*</span></h6>
                 <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
                     <textarea id="leave_reason" class="form-control" placeholder="Tulis alasan cuti anda disini" cols="30" rows="10"></textarea>
                 </div>
@@ -78,70 +79,27 @@
     </div>
     {{-- Isi konten ketentuan pengambilan cuti  --}}
     <div class="col-xxl-6 col-lg-6">
-        <h6>Perhatikan Sebelum Mengajukan Izin Cuti</h6>
+        <div class="h5 pb-2 mb-4 text-danger border-bottom border-danger text-center">
+            Perhatikan Ketentuan Sebelum Mengajukan Cuti
+          </div>
         <ul class="list-unstyled">
-            <li><h6>Ini belum muncul bullett nya</h6></li>
-            <ul>
-                <li>Ketentuan pertama</li>
-            </ul>
+            <li><h6>Cuti Tahunan    : <span>Hak cuti karyawan yang telah bekerja selama minimal 12 bulan tanpa terputus.</span></h6></li>
+            <li><h6>Cuti Besar      : <span>Hak cuti karyawan dengan masa kerja 5 tahun berturut-turut dan kelipatannya.</span></h6></li>
+            <li><h6>Cuti Khusus     : <span>Hak cuti karyawan dengan masa kerja 5 tahun berturut-turut dan kelipatannya.</span></h6></li>
         </ul>
     </div>
 </div>
 @section('script')
 <script>
-    function getNik(str) {
-        if (str.length == 0) {
-            document.getElementbyId("nama").value = "";
-            document.getElementbyId("dept").value = "";
-            document.getElementbyId("posisi").value = "";
-            return
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-
-            }
-        }
-    }
-</script>
-{{-- <script>
-    $('#nik').on('change',function() {
-        $('#nama').val($(this).find(':selected').data('nik'));
-        $('#dept').val($(this).find(':selected').data('dept'));
-        $('#posisi').val($(this).find(':selected').data('posisi'));
-    });
-</script> --}}
-{{-- <script type="text/javascript">
-    $('#nik').on('keyup',function(){
+    function autofill() {
         var nik = $('#nik').val();
         $.ajax({
-            url:"{{ url('formcuti/getusers') }}"+/nik,
-            data:"nik="+nik,
-            success:function(data) {
-                var json= data;
-                let obj = JSON.parse(json);
-                $('#nama').val(obj.nama);
-                $('#dept').val(obj.dept);
-                $('#posisi').val(obj.posisi);
-                console.log(obj);
-            }
+            url : 'test',
+            data : 'nik='+nik,
+        }).success(function(data){
+            alert('okeeey')
         });
-    });
-
-    function isi_otomatis(){
-        var nik = $('#nik').val();
-        $.ajax{(
-            url:"{{ url('formcuti/getusers') }}"+/nik,
-            data:"nik="+nik,
-            success:function(data) {
-                var json= data;
-                let obj = JSON.parse(json);
-                $('#nama').val(obj.nama);
-                $('#dept').val(obj.dept);
-                $('#posisi').val(obj.posisi);
-                console.log(obj);
-            }
-        )};
     }
-</script> --}}
+</script>
 @endsection
 @endsection

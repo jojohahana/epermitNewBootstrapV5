@@ -9,8 +9,8 @@
         <form class="needs-validation" novalidate="">
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
-                    <label class="form-label" for="validationCustom01">NIK</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="">
+                    <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
+                    <input class="form-control" id="validationCustom01" type="text" autofocus value="" required="">
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
@@ -44,7 +44,7 @@
                 </div>
             </div> --}}
             <div class="row date-range-picker">
-                <h6>Tanggal Izin</h6>
+                <h6>Tanggal Izin <span class="text-danger">*</span></h6>
                 <div class="col-xl-6">
                         <div class="theme-form">
                             <div class="form-group">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col pb-4">
-                <h6>Status Rawat</h6>
+                <h6>Status Rawat <span class="text-danger">*</span></h6>
                 <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
                   <div class="radio radio-primary">
                     <input id="radioinline1" type="radio" name="radio1" value="option1">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="row g-3 pb-4">
-                <h6>Upload File</h6>
+                <h6>Upload File <span class="text-danger">*</span></h6>
                 <div class="mb-3">
                     <input type="file" class="form-control" aria-label="file example" required>
                     <div id="#" class="form-text">

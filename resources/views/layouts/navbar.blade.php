@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/owlcarousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/select2.css') }}">
 
     <!-- Plugins css Ends-->
@@ -90,7 +91,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header pb-0">
-                    <h5 class="mx-auto text-center pb-5">@yield('title-content')</h5>
+                    <h4 class="mx-auto text-center fw-bold pb-5">@yield('title-content')</h4>
                   </div>
                   <div class="card-body">
                     @yield('content')
@@ -143,6 +144,7 @@
     <script src="{{ asset('vendor/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('vendor/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/date-time-picker/datetimepicker.custom.js') }}"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>

@@ -37,9 +37,12 @@ class TestScanController extends Controller
      */
     public function ajaxUser(Request $request)
     {
-        $data = TestScan::where('nik', $nik)->first();
+        Transaction::create($request->validated());
 
-        return json_encode($data);
+        return redirect()->route('epermit/formcuti');
+        // $data = TestScan::where('nik', $nik)->first();
+
+        // return json_encode($data);
     }
 
     /**

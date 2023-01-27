@@ -14,6 +14,21 @@ class PermitController extends Controller
         return view('forms.usercuti');
     }
 
+    public function storeCuti(Request $request) {
+        $request->validate([
+            'nik'=> 'required|string|min:4|max:4',
+            'name'   => 'required|string',
+            'dept'   => 'required|string',
+            'posisi'   => 'required|string',
+            'type_cuti'   => 'required|string|min:4|max:10',
+            'from_date'   => 'required|string|max:50',
+            'to_date'   => 'required|string|max:50',
+            'reason'   => 'required|string|max:100',
+        ]);
+
+        DB::beginTransaction();
+    }
+
     public function indexSakit() {
         return view('forms.usersakit');
     }
