@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/owlcarousel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/daterange-picker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/date-picker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/select2.css') }}">
 
     <!-- Plugins css Ends-->
@@ -136,15 +136,19 @@
     <script src="{{ asset('vendor/js/landing_sticky.js') }}"></script>
     <script src="{{ asset('vendor/js/landing.js') }}"></script>
     <script src="{{ asset('vendor/js/jarallax_libs/libs.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/datepicker/daterange-picker/moment.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterange-picker.custom.js') }}"></script>
     <script src="{{ asset('vendor/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('vendor/js/select2/select2-custom.js') }}"></script>
     <script src="{{ asset('vendor/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('vendor/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/moment.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/daterange-picker/daterange-picker.custom.js') }}"></script>
     <script src="{{ asset('vendor/js/datepicker/date-time-picker/datetimepicker.custom.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/date-picker/datepicker.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/date-picker/datepicker.en.js') }}"></script>
+    <script src="{{ asset('vendor/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
+    <script src="{{ asset('vendor/js/tooltip-init.js') }}"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>

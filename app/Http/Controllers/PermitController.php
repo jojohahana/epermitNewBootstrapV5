@@ -33,7 +33,11 @@ class PermitController extends Controller
         return view('forms.usersakit');
     }
 
+    // public function indexCheck() {
+    //     $check = DB::table('leaves_admins')
+    // }
     public function indexCheck() {
         return view('forms.checkcuti');
     }
+
 }

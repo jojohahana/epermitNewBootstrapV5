@@ -26,31 +26,19 @@
                     <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
                 </div>
             </div>
-            {{-- <div class="col pb-4">
-                <h6>Jenis Cuti</h6>
-                <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
-                  <div class="radio radio-primary">
-                    <input id="radioinline1" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline1">Cuti Tahunan</label>
-                  </div>
-                  <div class="radio radio-primary">
-                    <input id="radioinline2" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline2">Cuti Besar</label>
-                  </div>
-                  <div class="radio radio-primary">
-                    <input id="radioinline3" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline3">Cuti Khusus</label>
-                  </div>
-                </div>
-            </div> --}}
-            <div class="row date-range-picker">
-                <h6>Tanggal Izin <span class="text-danger">*</span></h6>
+            <div class="row date-picker">
+                <h6>Tanggal Izin Sakit</h6>
                 <div class="col-xl-6">
-                        <div class="theme-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control digits" name="daterange" value="01/01/2023">
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label>From <span class="text-danger">*</span></label>
+                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <label>To <span class="text-danger">*</span></label>
+                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                    </div>
                 </div>
             </div>
             <div class="col pb-4">

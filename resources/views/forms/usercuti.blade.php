@@ -6,6 +6,7 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
+        @csrf
         <form action="{{ url('formcuti/getusers')}}" class="needs-validation" method="post">
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
@@ -34,23 +35,26 @@
             <div class="col pb-4">
                 <h6>Jenis Cuti <span class="text-danger">*</span></h6>
                 <select class="js-example-basic-single col-sm-12" id="leaves_type">
-                    <optgroup label="Cuti"></optgroup>
+                    <option selected disabled>Pilih Jenis Cuti</option>
+                    {{-- <optgroup label="Cuti"></optgroup> --}}
                         <option value="CT">Tahunan</option>
                         <option value="CB">Besar</option>
                         <option value="CK">Khusus</option>
                 </select>
             </div>
-
-            <div class="row date-range-picker">
-                <h6>Tanggal Cuti <span class="text-danger">*</span></h6>
+            <div class="row date-picker">
+                <h6>Tanggal Cuti</h6>
                 <div class="col-xl-6">
-                    {{-- <div class="daterange-card"> --}}
-                        {{-- <div class="theme-form"> --}}
-                            <div class="form-group">
-                              <input class="form-control digits" type="text" name="datetimepicker" value="01/15/2017 - 02/15/2017">
-                            </div>
-                        {{-- </div> --}}
-                    {{-- </div> --}}
+                    <div class="form-group">
+                        <label>From <span class="text-danger">*</span></label>
+                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <label>To <span class="text-danger">*</span></label>
+                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                    </div>
                 </div>
             </div>
             <div class="row g-3 pb-4">

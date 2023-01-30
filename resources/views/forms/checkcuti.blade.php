@@ -39,7 +39,7 @@
     <h5>Progress Izin</h5><span>Data yang tampil adalah data izin yang sudah disubmit.</span>
   </div>
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="display datatables" id="dt-check">
       <thead>
         <tr>
           <th scope="col">#</th>
