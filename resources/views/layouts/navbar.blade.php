@@ -33,6 +33,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/select2.css') }}">
 
     <!-- Plugins css Ends-->
+    {{-- SweetAlert2 css  --}}
+    <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/bootstrap.css') }}">
     <!-- App css-->
@@ -150,6 +152,8 @@
     <script src="{{ asset('vendor/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
     <script src="{{ asset('vendor/js/tooltip-init.js') }}"></script>
     <!-- Plugins JS Ends-->
+    {{-- SweetAlert2 JS  --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <!-- Theme js-->
     <script src="{{ asset('vendor/js/script.js') }}"></script>
     @yield('script')

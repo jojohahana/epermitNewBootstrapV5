@@ -27,10 +27,10 @@ Route::controller(PermitController::class)->group(function () {
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
 });
 
-Route::controller(TestScanController::class)->group(function () {
-    Route::get('formcuti/getusers', 'ajaxUser')->name('formcuti/getusers');
-});
+// Route::controller(TestScanController::class)->group(function () {
+//     Route::get('formcuti/getusers', 'ajaxUser')->name('formcuti/getusers');
+// });
 
-Route::get('/test', function() {
-    return view('forms.usercuti');
-});
+// Route::get('/test', function() {
+//     return view('forms.usercuti');
+// });

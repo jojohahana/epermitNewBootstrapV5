@@ -9,11 +9,14 @@ class LeavesUser extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 
+        'nik',
+        'name',
+        'dept',
+        'posisi',
         'leaves_type',
         'from_date',
         'to_date',
-        'day',
+        'tagrfid',
         'leave_reason',
     ];
 }

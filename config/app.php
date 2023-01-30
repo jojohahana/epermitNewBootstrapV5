@@ -197,6 +197,7 @@ return [
 
         // Datatable
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
 
     ],
 
@@ -214,5 +215,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+    'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
 
 ];
