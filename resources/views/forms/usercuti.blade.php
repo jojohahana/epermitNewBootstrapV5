@@ -6,17 +6,17 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        @csrf
-        <form action="{{ url('epermit/formcuti/store')}}" method="POST">
+        <form action="{{ route('epermit/formcuti/store') }}" method="POST">
+            @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="user_id" onkeyup="autofill()" autofocus type="text" placeholder="Enter NIK">
-                    {{-- <input class="form-control" id="nik" onkeyup="getNik(this.value)" value="" @error('nik') is-invalid @enderror autofocus type="text" placeholder="Enter NIK"> --}}
-                    {{-- @error(nik)
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror --}}
-                    <div class="valid-feedback">Looks good!</div>
+                    <input class="form-control" id="nik" onkeyup="autofill()" autofocus type="text" placeholder="Enter NIK">
+                    @error('nik')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
@@ -65,7 +65,6 @@
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Sisa Cuti</label>
                     <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
-                    <div class="valid-feedback">Looks good!</div>
                 </div>
             </div>
             <div class="col pb-4">
@@ -76,7 +75,7 @@
             </div>
             <div class="pt-3">
                 <button class="btn btn-primary" type="submit">Submit Cuti</button>
-                <button class="btn btn-danger" type="submit">Reset</button>
+                <button class="btn btn-danger" type="reset">Reset</button>
             </div>
         </form>
     </div>
