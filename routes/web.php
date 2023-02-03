@@ -16,7 +16,7 @@ use App\Http\Controllers\TestScanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('maindash');
 });
 
 Route::controller(PermitController::class)->group(function () {
@@ -25,6 +25,8 @@ Route::controller(PermitController::class)->group(function () {
     Route::post('epermit/formcuti/store', 'storeCuti')->name('epermit/formcuti/store');
     Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
+    Route::get('epermit/getemployee/{id}', 'get_employee')->name('epermit/getemployee');
+    
 });
 
 // Route::controller(TestScanController::class)->group(function () {

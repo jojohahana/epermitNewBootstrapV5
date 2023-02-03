@@ -6,12 +6,12 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form action="{{ route('epermit/formcuti/store') }}" method="POST">
+        <form onsubmit="return false" action="{{ route('epermit/formcuti/store') }}" method="POST">
             @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="nik" onkeyup="autofill()" autofocus type="text" placeholder="Enter NIK">
+                    <input class="form-control" id="nik" autofocus type="text" placeholder="Enter NIK">
                     @error('nik')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
@@ -20,15 +20,15 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
-                    <input class="form-control" id="nama" type="text" value="" required="">
+                    <input class="form-control" id="nama" readonly type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Departemen</label>
-                    <input class="form-control" id="dept"  type="text" value="" required="">
+                    <input class="form-control" id="dept" readonly type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Posisi</label>
-                    <input class="form-control" id="posisi"  type="text" value="" required="">
+                    <input class="form-control" id="posisi" readonly type="text" value="" required="">
                 </div>
             </div>
             <div class="col pb-4">
@@ -93,15 +93,26 @@
 </div>
 @section('script')
 <script>
-    function autofill() {
-        var nik = $('#nik').val();
-        $.ajax({
-            url : 'test',
-            data : 'nik='+nik,
-        }).success(function(data){
-            alert('okeeey')
-        });
-    }
+    $(document).on('keypress', '#nik', function (e){
+        let val_nik = $(this).val();
+        let post_url = "{{ route('epermit/getemployee', ':id') }}";
+        post_url = post_url.replace(':id', val_nik);
+        if (e.keyCode == 13){
+            $.ajax({
+                url: post_url,
+                type: 'get',
+                dataType: 'json',
+                success: function(data){
+                    $('#nama').val(data[0]['name']);
+                    $('#dept').val(data[0]['department']);
+                    $('#posisi').val(data[0]['position']);
+                    $('#leaves_type').focus();
+                } 
+            });
+        }
+    });
+
+
 </script>
 @endsection
 @endsection

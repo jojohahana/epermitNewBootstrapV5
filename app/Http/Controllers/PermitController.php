@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // use App\Models\LeavesUser;
 use App\Models\Karyawan;
 use DateTime;
+use DB;
 
 class PermitController extends Controller
 {
@@ -16,6 +17,17 @@ class PermitController extends Controller
 
     public function indexCuti() {
         return view('forms.usercuti');
+    }
+
+    public function get_employee($nik){
+        $employee = DB::table('employee')
+        ->where('data_status', '=','ACTIVE')
+        ->where('employee_id','=',$nik)
+        ->get();
+
+        echo json_encode($employee);
+        exit;
+
     }
 
     public function storeCuti(Request $request) {
