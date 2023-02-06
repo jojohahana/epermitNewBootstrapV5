@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use App\Models\LeavesUser;
-use App\Models\Karyawan;
+use App\Models\SickLeaves;
+// use App\Models\Karyawan;
 use DateTime;
-// use DB;
+use DB;
 
 class PermitController extends Controller
 {
@@ -23,7 +24,7 @@ class PermitController extends Controller
     public function get_employee($nik){
         $employee = DB::table('employee')
         ->where('data_status', '=','ACTIVE')
-        ->where('employee_id','=',$nik)
+        ->where('rfid_tag','=',$nik)
         ->get();
 
         echo json_encode($employee);
@@ -37,10 +38,10 @@ class PermitController extends Controller
 
         $request->validate([
            'nik'            => 'required|string|min:4|max:4',
-           'name'           => 'required|string|max:50',
-           'department'     => 'required|string|max:50',
-           'position'       => 'required|string|max:50',
-           'leave_type'     => 'required|string|max:50',
+           'nama'           => 'required|string|max:50',
+           'dept'           => 'required|string|max:50',
+           'posisi'         => 'required|string|max:50',
+           'leaves_type'    => 'required|string|max:50',
            'from_date'      => 'required|string|max:50',
            'to_date'        => 'required|string|max:50',
            'leave_reason'   => 'required|string|max:100'
@@ -52,10 +53,10 @@ class PermitController extends Controller
         if ($cuti === null) {
             $cuti = new LeavesUser;
             $cuti->user_id      = $request->nik;
-            $cuti->name         = $request->name;
+            $cuti->name         = $request->nama;
             $cuti->department   = $request->department;
-            $cuti->position     = $request->position;
-            $cuti->leave_type   = $request->leave_type;
+            $cuti->position     = $request->posisi;
+            $cuti->leave_type   = $request->leaves_type;
             $fromdate           = $request->from_date;
             $cuti->from_date    = Carbon::parse($fromdate)->format('Y-m-d');
             $todate             = $request->to_date;

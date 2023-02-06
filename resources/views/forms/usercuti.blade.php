@@ -6,7 +6,7 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form action="{{ route('epermit/formcuti/store') }}" method="POST">
+        <form onsubmit="return false" action="{{ route('epermit/formcuti/store') }}" method="POST">
             @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
@@ -47,12 +47,22 @@
                     <div class="form-group">
                         <label>From <span class="text-danger">*</span></label>
                         <input class="datepicker-here form-control digits" id="from_date" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                        @error('from_date')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="form-group">
                         <label>To <span class="text-danger">*</span></label>
                         <input class="datepicker-here form-control digits" id="to_date" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                        @error('to_date')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     </div>
                 </div>
             </div>
@@ -60,7 +70,6 @@
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Cuti Diambil</label>
                     <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
-                    <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Total Sisa Cuti</label>
@@ -71,6 +80,11 @@
                 <h6>Keterangan Cuti <span class="text-danger">*</span></h6>
                 <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
                     <textarea id="leave_reason" class="form-control" placeholder="Tulis alasan cuti anda disini" cols="30" rows="10"></textarea>
+                    @error('leave_reason')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </div>
             </div>
             <div class="pt-3">
@@ -103,6 +117,7 @@
                 type: 'get',
                 dataType: 'json',
                 success: function(data){
+                    $('#nik').val(data[0]['employee_id']);
                     $('#nama').val(data[0]['name']);
                     $('#dept').val(data[0]['department']);
                     $('#posisi').val(data[0]['position']);

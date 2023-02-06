@@ -21,18 +21,15 @@ Route::get('/', function () {
 
 Route::controller(PermitController::class)->group(function () {
     Route::get('/epermit', 'dashEpermit')->name('/epermit');
+    // IZIN CUTI
     Route::get('epermit/formcuti', 'indexCuti')->name('epermit/formcuti');
     Route::post('epermit/formcuti/store', 'storeCuti')->name('epermit/formcuti/store');
+    // IZIN SAKIT
     Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
+    // GENERATE NIK FROM RFID_TAG
     Route::get('epermit/getemployee/{id}', 'get_employee')->name('epermit/getemployee');
-    
+
 });
 
-// Route::controller(TestScanController::class)->group(function () {
-//     Route::get('formcuti/getusers', 'ajaxUser')->name('formcuti/getusers');
-// });
 
-// Route::get('/test', function() {
-//     return view('forms.usercuti');
-// });
