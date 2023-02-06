@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
-use App\Models\LeavesUser;
+use App\Models\leaves_admins;
 use App\Models\SickLeaves;
 // use App\Models\Karyawan;
 use DateTime;
@@ -34,7 +34,7 @@ class PermitController extends Controller
 
     // SAVE DATA IZIN CUTI
     public function storeCuti(Request $request) {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         $request->validate([
            'nik'            => 'required|string|min:4|max:4',
@@ -49,7 +49,7 @@ class PermitController extends Controller
         //    'sisaCuti'       => 'required|string|max:50',
         ]);
 
-        $cuti = LeavesUser::where('user_id','='.$request->employee_id)->first();
+        $cuti = leaves_admins::where('user_id','='.$request->employee_id)->first();
         if ($cuti === null) {
             $cuti = new LeavesUser;
             $cuti->user_id      = $request->nik;
@@ -66,11 +66,11 @@ class PermitController extends Controller
             // $cuti->user_id      = $request->employee_id;
             $cuti->save();
 
-            DB::commit();
+            // DB::commit();
             Toastr::success('Cuti Berhasil Diajukan ! :)','Success');
             return redirect()->route('epermit/formcuti');
         } else {
-            DB::rollback();
+            // DB::rollback();
             Toastr::error('Pengajuan Cuti Gagal ! :)','Error');
             return redirect()->back();
         }

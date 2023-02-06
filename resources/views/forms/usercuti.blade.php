@@ -6,12 +6,12 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form onsubmit="return false" action="{{ route('epermit/formcuti/store') }}" method="POST">
+        <form  action="{{ route('epermit/formcuti/store') }}" method="POST">
             @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="nik" autofocus type="text" placeholder="Enter NIK">
+                    <input class="form-control" id="nik" name="nik" autofocus type="text" placeholder="Enter NIK">
                     @error('nik')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
