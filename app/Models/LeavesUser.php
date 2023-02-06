@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class LeavesUser extends Model
 {
     use HasFactory;
+    protected $table = 'leaves_admin';
     protected $fillable = [
-        'nik',
-        'name',
-        'dept',
-        'posisi',
-        'leaves_type',
+        'user_id',
+        'leave_type',
         'from_date',
         'to_date',
-        'tagrfid',
+        'day',
+        'data_status',
         'leave_reason',
     ];
 }

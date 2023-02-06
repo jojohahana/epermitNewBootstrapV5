@@ -6,7 +6,7 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form onsubmit="return false" action="{{ route('epermit/formcuti/store') }}" method="POST">
+        <form action="{{ route('epermit/formcuti/store') }}" method="POST">
             @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
@@ -107,7 +107,7 @@
                     $('#dept').val(data[0]['department']);
                     $('#posisi').val(data[0]['position']);
                     $('#leaves_type').focus();
-                } 
+                }
             });
         }
     });

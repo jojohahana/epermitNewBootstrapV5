@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Karyawan extends Model
 {
     use HasFactory;
+    protected $table = 'leaves_admins';
     protected $fillable = [
-        'nik',
-        'nama',
-        'dept',
-        'posisi',
+        'user_id',
         'leaves_type',
         'from_date',
         'to_date',
+        'day',
         'leave_reason',
+        'data_status',
     ];
 }
