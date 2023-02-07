@@ -6,7 +6,7 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form id="form_cuti"  method="post"">
+        <form id="form_cuti"  method="post">
             @csrf
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
@@ -36,7 +36,6 @@
                 <h6>Jenis Cuti <span class="text-danger">*</span></h6>
                 <select class="js-example-basic-single col-sm-12" id="leaves_type" name="leaves_type">
                     <option selected disabled>Pilih Jenis Cuti</option>
-                    {{-- <optgroup label="Cuti"></optgroup> --}}
                         <option value="CT">Tahunan</option>
                         <option value="CB">Besar</option>
                         <option value="CK">Khusus</option>
@@ -47,12 +46,12 @@
                 <div class="col-xl-6">
                     <div class="form-group">
                         <label>From <span class="text-danger">*</span></label>
-                        <input class="datepicker-here form-control digits from_date" id="from_date"  name="from_date" type="text"  data-language="en">
+                        <input class="datepicker-here form-control digits from_date" id="from_date" name="from_date" type="text"  data-language="en">
                         @error('from_date')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -69,11 +68,15 @@
             </div>
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
-                    <label class="form-label" for="tot_apply_cuti">Total Cuti Diambil</label>
+                    <label class="form-label" for="tot_apply_cuti">Cuti Diambil</label>
                     <input class="form-control" id="tot_apply_cuti" name="tot_apply_cuti" readonly type="text" value="" required="">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label" for="validationCustom01">Total Sisa Cuti</label>
+                    <label class="form-label" for="validationCustom01">Sisa Cuti</label>
+                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label" for="validationCustom01">Total Cuti</label>
                     <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
                 </div>
             </div>
@@ -112,11 +115,11 @@ $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-}); 
+});
 
 
 $(document).ready(function() {
-    $("#from_date").datepicker({ 
+    $("#from_date").datepicker({
         onSelect: function(){
             var check_nik =  $("#nik").val();
             if (check_nik == null || check_nik == ''){
@@ -124,10 +127,10 @@ $(document).ready(function() {
                     $("#from_date").val('');
                     $("#rf_id").focus();
             };
-        } 
+        }
     });
 
-    $("#to_date").datepicker({ 
+    $("#to_date").datepicker({
         onSelect: function(){
             var from    =   $("#from_date").val();
             var to      =   $("#to_date").val();
@@ -137,7 +140,7 @@ $(document).ready(function() {
             var tot_time = dt2.getTime() - dt1.getTime();
             var tot_days = (tot_time / (1000 * 3600 * 24))+1;
             $("#tot_apply_cuti").val(tot_days);
-        } 
+        }
     });
 });
 
@@ -186,7 +189,7 @@ $(document).ready(function() {
                 success: function(data){
                     alert("Success Add Data");
                     location.reload(true);
-               
+
                 },error: function(data){
                     alert("Gagal Add Data")
                 }

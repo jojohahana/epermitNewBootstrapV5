@@ -28,7 +28,7 @@ class PermitController extends Controller
             ->where('data_status', '=','ACTIVE')
             ->where('rfid_tag','=',$nik)
             ->get();
-            
+
             echo json_encode($employee);
             exit;
     }else{

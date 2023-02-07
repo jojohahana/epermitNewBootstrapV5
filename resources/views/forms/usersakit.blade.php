@@ -6,24 +6,30 @@
 <div class="row">
     {{-- Isi konten form  --}}
     <div class="col-xxl-6 col-lg-6">
-        <form class="needs-validation" novalidate="">
+        @csrf
+        <form id="form_sakit" method="post">
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="validationCustom01" type="text" autofocus value="" required="">
-                    <div class="valid-feedback">Looks good!</div>
+                    <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" autofocus placeholder="Enter NIK">
+                    <input class="form-control" id="nik" name="nik" type="hidden" value="">
+                    @error('nik')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Nama Karyawan</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
+                    <input class="form-control" id="nama" readonly type="text" value="" required="" disabled="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Departemen</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
+                    <input class="form-control" id="dept" readonly type="text" value="" required="" disabled="">
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">Posisi</label>
-                    <input class="form-control" id="validationCustom01" type="text" value="" required="" disabled="">
+                    <input class="form-control" id="posisi" readonly type="text" value="" required="" disabled="">
                 </div>
             </div>
             <div class="row date-picker">
@@ -31,31 +37,38 @@
                 <div class="col-xl-6">
                     <div class="form-group">
                         <label>From <span class="text-danger">*</span></label>
-                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                        <input class="datepicker-here form-control digits from_date" id="from_date" name="from_date" type="text" data-language="en">
+                        @error('from_date')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="form-group">
                         <label>To <span class="text-danger">*</span></label>
-                        <input class="datepicker-here form-control digits" type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-language="en">
+                        <input class="datepicker-here form-control digits to_date" id="to_date" name="to_date" type="text" data-language="en">
                     </div>
+                </div>
+            </div>
+            <div class="row g-3 pb-4">
+                <div class="col-md-3">
+                    <label class="form-label" for="tot_apply_sick">Lama Izin Sakit</label>
+                    <input class="form-control" id="tot_apply_sick" name="tot_apply_sick" readonly type="text" value="" required="">
                 </div>
             </div>
             <div class="col pb-4">
                 <h6>Status Rawat <span class="text-danger">*</span></h6>
-                <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
-                  <div class="radio radio-primary">
-                    <input id="radioinline1" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline1">Rawat Jalan</label>
-                  </div>
-                  <div class="radio radio-primary">
-                    <input id="radioinline2" type="radio" name="radio1" value="option1">
-                    <label class="mb-0" for="radioinline2">Rawat Inap</label>
-                  </div>
-                </div>
+                <select class="js-example-basic-single col-sm-12" id="sick_type" name="sick_type">
+                    <option selected disabled>Pilih Jenis Rawat</option>
+                        <option value="RJalan">Rawat Jalan</option>
+                        <option value="RInap">Rawat Inap</option>
+                </select>
             </div>
 
-            <div class="row g-3 pb-4">
+            {{-- Lampiran Surat  --}}
+            {{-- <div class="row g-3 pb-4">
                 <h6>Upload File <span class="text-danger">*</span></h6>
                 <div class="mb-3">
                     <input type="file" class="form-control" aria-label="file example" required>
@@ -63,10 +76,10 @@
                      Lampirkan Surat Keterangan Dokter atau Surat Rawat Inap
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="pt-3">
-                <button class="btn btn-primary" type="submit">Submit Izin Sakit</button>
-                <button class="btn btn-danger" type="submit">Reset</button>
+                <button class="btn btn-primary submit_sakit" type="submit">Submit Izin Sakit</button>
+                <button class="btn btn-danger" type="reset">Reset</button>
             </div>
         </form>
     </div>
@@ -81,4 +94,92 @@
         </ul>
     </div>
 </div>
+@section('script')
+<script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+
+    $(document).ready(function() {
+    $("#from_date").datepicker({
+        onSelect: function(){
+            var check_nik =  $("#nik").val();
+            if (check_nik == null || check_nik == ''){
+                alert('NIK Masih Kosong');
+                    $("#from_date").val('');
+                    $("#rf_id").focus();
+            };
+        }
+    });
+
+    $("#to_date").datepicker({
+        onSelect: function(){
+            var from    =   $("#from_date").val();
+            var to      =   $("#to_date").val();
+
+            var dt1 = new Date(from);
+            var dt2 = new Date(to);
+            var tot_time = dt2.getTime() - dt1.getTime();
+            var tot_days = (tot_time / (1000 * 3600 * 24))+1;
+            $("#tot_apply_sick").val(tot_days);
+        }
+    });
+});
+
+$(document).on("keypress", "#rf_id", function (e){
+        let val_nik = $(this).val();
+        let post_url = "{{ route('epermit/getemployee', ':id') }}";
+        post_url = post_url.replace(':id', val_nik);
+        if (e.keyCode == 13){
+            $.ajax({
+                url: post_url,
+                type: "get",
+                dataType: "json",
+                success: function(data){
+                    if(data == null || data == ''){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Data Karyawan Tidak Ditemukan'
+                            });
+                            $("#rf_id").val('');
+                            $("#nik").val('');
+                    }else{
+                        $("#rf_id").val(data[0]["employee_id"]);
+                        $("#nik").val(data[0]["employee_id"]);
+                        $("#nama").val(data[0]["name"]);
+                        $("#dept").val(data[0]["department"]);
+                        $("#posisi").val(data[0]["position"]);
+                        $("#leaves_type").focus();
+                    }
+                },error: function(data){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Input NIK Terlebih dahulu'
+                        });
+                }
+            });
+        }
+    });
+
+    $(".submit_sakit").on("click", function() {
+        $.ajax({
+                url: "{{ route('epermit/formcuti/store') }}",
+                type: "post",
+                data: $("#form_sakit").serialize(),
+                success: function(data){
+                    alert("Success Add Data");
+                    location.reload(true);
+
+                },error: function(data){
+                    alert("Gagal Add Data")
+                }
+            });
+
+    });
+</script>
+@endsection
 @endsection
