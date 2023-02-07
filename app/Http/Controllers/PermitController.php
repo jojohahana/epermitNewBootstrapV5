@@ -83,9 +83,38 @@ class PermitController extends Controller
         return view('forms.usersakit');
     }
 
-    // public function indexCheck() {
-    //     $check = DB::table('leaves_admins')
-    // }
+    // SAVE DATE IZIN SAKIT
+
+    public function storeSakit(Request $request) {
+        $request->validate([
+            'nik'               => 'required|string|min:4|max:4',
+            'from_date'         => 'required|string|max:50',
+            'to_date'           => 'required|string|max:50',
+            'sick_type'         => 'required|string|max:50',
+            'tot_apply_sick'    => 'required|string|max:50'
+        ]);
+
+        $sakit = leaves_sick::where('user_id','=',$request->employee_id)->first();
+        if ($sakit === null) {
+            $sakit = new leaves_sick;
+            $sakit->user_id     = $request->nik;
+            $fromdate           = $request->from_date;
+            $sakit->from_date   = Carbon::parse($fromdate)->format('Y-m-d');
+            $todate             = $request->to_date;
+            $sakit->to_date     = Carbon::parse($todate)->format('Y-m-d');
+            $sakit->sick_type   = $request->sick_type;
+            $sakit->day         = $request->tot_apply_sick;
+            $sakit->save();
+
+            return response()->json(['success' => true]);
+            return redirect()->route('epermit/formsakit');
+        } else {
+            return response()->json(['errors' => true]);
+            return redirect()->back();
+        }
+    }
+
+
     public function indexCheck() {
         return view('forms.checkcuti');
     }

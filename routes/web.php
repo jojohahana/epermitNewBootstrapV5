@@ -26,9 +26,12 @@ Route::controller(PermitController::class)->group(function () {
     Route::post('epermit/formcuti/store', 'storeCuti')->name('epermit/formcuti/store');
     // IZIN SAKIT
     Route::get('epermit/formsakit', 'indexSakit')->name('epermit/formsakit');
-    Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
+    Route::post('epermit/formsakit/store', 'storeSakit')->name('epermit/formsakit/store');
     // GENERATE NIK FROM RFID_TAG
     Route::get('epermit/getemployee/{id}', 'get_employee')->name('epermit/getemployee');
+
+
+    Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
 
 });
 

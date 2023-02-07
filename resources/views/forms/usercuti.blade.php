@@ -123,7 +123,12 @@ $(document).ready(function() {
         onSelect: function(){
             var check_nik =  $("#nik").val();
             if (check_nik == null || check_nik == ''){
-                alert('NIK Masih Kosong');
+                // alert('NIK Masih Kosong');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Isi NIK Dulu yaaa'
+                });
                     $("#from_date").val('');
                     $("#rf_id").focus();
             };
@@ -187,7 +192,12 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#form_cuti").serialize(),
                 success: function(data){
-                    alert("Success Add Data");
+                    // alert("Success Add Data");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Happy Holiday !!',
+                        text: 'Cuti Kamu Berhasil Diajukan'
+                    });
                     location.reload(true);
 
                 },error: function(data){

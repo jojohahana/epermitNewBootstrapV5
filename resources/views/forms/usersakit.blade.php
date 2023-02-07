@@ -152,7 +152,7 @@ $(document).on("keypress", "#rf_id", function (e){
                         $("#nama").val(data[0]["name"]);
                         $("#dept").val(data[0]["department"]);
                         $("#posisi").val(data[0]["position"]);
-                        $("#leaves_type").focus();
+                        $("#sick_type").focus();
                     }
                 },error: function(data){
                     Swal.fire({
@@ -167,7 +167,7 @@ $(document).on("keypress", "#rf_id", function (e){
 
     $(".submit_sakit").on("click", function() {
         $.ajax({
-                url: "{{ route('epermit/formcuti/store') }}",
+                url: "{{ route('epermit/formsakit/store') }}",
                 type: "post",
                 data: $("#form_sakit").serialize(),
                 success: function(data){
