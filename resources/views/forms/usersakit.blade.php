@@ -11,7 +11,7 @@
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" autofocus placeholder="Enter NIK">
+                    <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" autofocus placeholder="Masukkan NIK Anda">
                     <input class="form-control" id="nik" name="nik" type="hidden" value="">
                     @error('nik')
                         <div class="alert alert-danger mt-2">
@@ -78,7 +78,7 @@
                 </div>
             </div> --}}
             <div class="pt-3">
-                <button class="btn btn-primary submit_sakit" type="submit">Submit Izin Sakit</button>
+                <button class="btn btn-primary submit_sakit" type="button">Submit Izin Sakit</button>
                 <button class="btn btn-danger" type="reset">Reset</button>
             </div>
         </form>
@@ -171,11 +171,21 @@ $(document).on("keypress", "#rf_id", function (e){
                 type: "post",
                 data: $("#form_sakit").serialize(),
                 success: function(data){
-                    alert("Success Add Data");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Yeaayy !!',
+                        text: 'Izin Sakit Kamu Berhasil Diajukan'
+                    });
+                    // alert("Success Add Data");
                     location.reload(true);
 
                 },error: function(data){
-                    alert("Gagal Add Data")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Gagal Submit Izin'
+                    });
+                    // alert("Gagal Add Data")
                 }
             });
 

@@ -83,7 +83,7 @@ class PermitController extends Controller
         return view('forms.usersakit');
     }
 
-    // SAVE DATE IZIN SAKIT
+    // SAVE DATA IZIN SAKIT
 
     public function storeSakit(Request $request) {
         $request->validate([
@@ -118,5 +118,12 @@ class PermitController extends Controller
     public function indexCheck() {
         return view('forms.checkcuti');
     }
+
+    // public function checkCuti() {
+    //     $izin = DB::table('leaves_admin')
+    //             ->where('data_status','=','ACTIVE')
+    //             ->get();
+
+    // }
 
 }

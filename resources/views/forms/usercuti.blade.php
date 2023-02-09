@@ -11,7 +11,7 @@
             <div class="row g-3 pb-4">
                 <div class="col-md-3">
                     <label class="form-label" for="validationCustom01">NIK <span class="text-danger">*</span></label>
-                    <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" placeholder="Enter NIK">
+                    <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" placeholder="Masukkan NIK Anda">
                     <input class="form-control" id="nik" name="nik" type="hidden" value="">
                     @error('nik')
                         <div class="alert alert-danger mt-2">
@@ -179,7 +179,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Input NIK Terlebih dahulu'
+                        text: 'Input NIK Terlebih Dulu'
                         });
                 }
             });
