@@ -3,19 +3,21 @@
 @section('title-content', 'FORM CHECK IZIN CUTI & SAKIT')
 
 @section('content')
-<form class="needs-validation" novalidate="">
+@csrf
+<form class="needs-validation" id="form_check" method="get">
     <div class="col pb-4">
         <div class="col-md-3 pt-3">
           <h6>NIK</h6>
-          <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" placeholder="Masukkan NIK Anda">
+          <input class="form-control" id="rf_id" name="rf_id" autofocus type="text" autofocus placeholder="Masukkan NIK Anda">
           <input class="form-control" id="nik" name="nik" type="hidden" value="">
-          @error('nik')
+            @error('nik')
             <div class="alert alert-danger mt-2">
                 {{ $message }}
             </div>
             @enderror
         </div>
-        <div class="form-group m-t-15 m-checkbox-inline mb-0 custom-radio-ml">
+        <div class="col mt-4">
+            <h6>Kategori Izin</h6>
             <select class="js-example-basic-single col-sm-12" id="check_type" name="sick_type">
                 <option selected disabled>Pilih Kategori Izin</option>
                     <option value="checkCuti">Izin Cuti</option>
@@ -29,6 +31,7 @@
     </div>
 </form>
 
+{{-- MODAL LIST IZIN - USER CHECK  --}}
 <div class="modal fade bs-example-modal-lg" id="modalsCheck" tab-index="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -36,43 +39,11 @@
                 <h4 class="modal-title" id="modalsCheckTitle">List Izin</h4>
             </div>
             <div class="modal-body">
-
-            </div>
             </div>
         </div>
     </div>
 </div>
-{{-- <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modalsCheck">List Izin</h4>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="table-responsive">
-                <table class="display" id="table_check">
-                    <thead>
-                        <tr>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Dept</th>
-                            <th>Tgl Izin</th>
-                            <th>Lama Izin</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <td>1234</td>
-                        <td>Test JO</td>
-                        <td>Marketing</td>
-                        <td>2022-01-31</td>
-                        <td>2</td>
-                        <td>Approval</td>
-                    </tbody>
-                </table>
-        </div>
-    </div>
-</div> --}}
+{{-- </div> --}}
 @section('script')
 <script>
 
@@ -103,10 +74,7 @@
                     }else{
                         $("#rf_id").val(data[0]["employee_id"]);
                         $("#nik").val(data[0]["employee_id"]);
-                        // $("#nama").val(data[0]["name"]);
-                        // $("#dept").val(data[0]["department"]);
-                        // $("#posisi").val(data[0]["position"]);
-                        // $("#leaves_type").focus();
+                        $("#check_type").focus();
                     }
                 },error: function(data){
                     Swal.fire({
@@ -124,9 +92,10 @@
         '<tr>'+
             '<th>NIK</th>'+
             '<th>Nama</th>'+
-            '<th>DeptK</th>'+
+            '<th>Dept</th>'+
             '<th>Tipe Izin</th>'+
             '<th>Lama Izin</th>'+
+            '<th>Alasan Izin</th>'+
             '<th>Tgl Izin</th>'+
             '<th>Status</th>'+
         '</tr>'+
@@ -134,11 +103,7 @@
     '<tbody>'+
     '</tbody>');
 
-    $('#dataTables_check').DataTable({
-        "columnDefs":[{
-            "searchable":false,
-        }],
-    });
+    $('#dataTables_check').DataTable();
 </script>
 @endsection
 @endsection

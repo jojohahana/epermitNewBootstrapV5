@@ -119,11 +119,38 @@ class PermitController extends Controller
         return view('forms.checkcuti');
     }
 
-    // public function checkCuti() {
-    //     $izin = DB::table('leaves_admin')
-    //             ->where('data_status','=','ACTIVE')
-    //             ->get();
+    public function checkCuti(Request $request) {
+        // $reqCheck = DB::table('leaves_admin')
+        //         ->join('employee','leaves_admin.user_id','=','employee.employee_id')
+        //         ->select('leaves_admin.user_id',
+        //                 'employee.name',
+        //                 'employee.department',
+        //                 'leaves_admin.leave_type',
+        //                 'leaves_admin.day',
+        //                 'leaves_admin.reason',
+        //                 'leaves_admin.updated_at',
+        //                 'leaves_admin.data_status'
+        //                 )
+        //         ->where('data_status','=','ACTIVE')
+        //         ->get();
 
-    // }
+        if($request->employee_id) {
+            $reqCheck = DB::table('leaves_admin')
+                ->join('employee','leaves_admin.user_id','=','employee.employee_id')
+                ->select('leaves_admin.user_id',
+                        'employee.name',
+                        'employee.department',
+                        'leaves_admin.leave_type',
+                        'leaves_admin.day',
+                        'leaves_admin.reason',
+                        'leaves_admin.updated_at',
+                        'leaves_admin.data_status'
+                        )
+                ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                ->get();
+        }
+        return Datatables::of($reqCheck);
+    }
+
 
 }
