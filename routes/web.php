@@ -32,7 +32,12 @@ Route::controller(PermitController::class)->group(function () {
 
 
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
+    Route::get('epermit/checkdtlpermit/{id}', 'checkCuti')->name('epermit/checkdtlpermit');
 
 });
+
+// Route::controller(TelegramBotController::class)->group(function () {
+//     Route::post('/send_message','storeMessage')->name('/send_message');
+// });
 
 

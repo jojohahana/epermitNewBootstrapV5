@@ -18,5 +18,8 @@ class leaves_admins extends Model
         'day',
         'data_status',
         'leave_reason',
+        'stat_app1',
+        'stat_app2',
+        'stat_app3',
     ];
 }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
 use App\Models\leaves_admins;
 use App\Models\SickLeaves;
-// use App\Models\Karyawan;
+use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Laravel\Facades\Telegram;
+use Carbon\Carbon;
 use DateTime;
 use DB;
-use Carbon\Carbon;
+use Datatables;
 
 class PermitController extends Controller
 {
@@ -33,7 +34,7 @@ class PermitController extends Controller
             exit;
     }else{
         return response()->json(['errors' => true]);
-    }
+        }
 
     }
 
@@ -53,6 +54,26 @@ class PermitController extends Controller
             'tot_apply_cuti'        => 'required|string|max:50'
          //    'sisaCuti'           => 'required|string|max:50',
          ]);
+
+        // Push telegram notif here
+        $text = "<b>📢  New Permit Submitted !!  📢</b>\n\n"
+                . "<b>💁 NIK Karyawan: </b>"
+                . "$request->nik\n"
+                . "<b>👉 Jenis Izin: </b>"
+                . "$request->leaves_type\n"
+                . "<b>📅 Tanggal Izin: \n</b>"
+                . "       $request->from_date  -  "
+                . "$request->to_date \n"
+                . "<b>🌟 Lama Izin: </b>"
+                . "$request->tot_apply_cuti hari\n"
+                . "<b>📰 Ket Izin: </b>"
+                . $request->leave_reason;
+         Telegram::sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001883164282'),
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
+
 
         $cuti = leaves_admins::where('user_id','='.$request->employee_id)->first();
         if ($cuti === null) {
@@ -77,6 +98,10 @@ class PermitController extends Controller
             return response()->json(['errors' => true]);
             return redirect()->back();
         }
+    }
+
+    public function updatedActivity() {
+        return view('message');
     }
 
     public function indexSakit() {
@@ -120,20 +145,6 @@ class PermitController extends Controller
     }
 
     public function checkCuti(Request $request) {
-        // $reqCheck = DB::table('leaves_admin')
-        //         ->join('employee','leaves_admin.user_id','=','employee.employee_id')
-        //         ->select('leaves_admin.user_id',
-        //                 'employee.name',
-        //                 'employee.department',
-        //                 'leaves_admin.leave_type',
-        //                 'leaves_admin.day',
-        //                 'leaves_admin.reason',
-        //                 'leaves_admin.updated_at',
-        //                 'leaves_admin.data_status'
-        //                 )
-        //         ->where('data_status','=','ACTIVE')
-        //         ->get();
-
         if($request->employee_id) {
             $reqCheck = DB::table('leaves_admin')
                 ->join('employee','leaves_admin.user_id','=','employee.employee_id')
@@ -146,10 +157,14 @@ class PermitController extends Controller
                         'leaves_admin.updated_at',
                         'leaves_admin.data_status'
                         )
-                ->where('employee_id','LIKE','%'.$request->employee_id.'%')
+                ->where('employee_id','='.$request->employee_id)
                 ->get();
+            $output = [
+                'dataIzin' => $reqCheck
+            ];
+            return response()->json($output);
         }
-        return Datatables::of($reqCheck);
+        // return Datatables::of($reqCheck)->make(true);
     }
 
 
