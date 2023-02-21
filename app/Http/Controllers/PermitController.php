@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\leaves_admins;
-use App\Models\SickLeaves;
+use App\Models\leaves_sick;
 use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Carbon\Carbon;
@@ -119,6 +119,25 @@ class PermitController extends Controller
             'tot_apply_sick'    => 'required|string|max:50'
         ]);
 
+        // Push telegram notif here
+        $text = "<b>📢  New Permit Submitted !!  📢</b>\n\n"
+                . "<b>💁 NIK Karyawan: </b>"
+                . "$request->nik\n"
+                . "<b>👉 Jenis Izin: </b>"
+                . "$request->sick_type\n"
+                . "<b>📅 Tanggal Izin: \n</b>"
+                . "       $request->from_date  -  "
+                . "$request->to_date \n"
+                . "<b>🌟 Lama Izin: </b>"
+                . "$request->tot_apply_sick hari\n";
+                // . "<b>📰 Ket Izin: </b>"
+                // . $request->leave_reason;
+         Telegram::sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001883164282'),
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
+
         $sakit = leaves_sick::where('user_id','=',$request->employee_id)->first();
         if ($sakit === null) {
             $sakit = new leaves_sick;
@@ -144,8 +163,8 @@ class PermitController extends Controller
         return view('forms.checkcuti');
     }
 
-    public function checkCuti(Request $request) {
-        if($request->employee_id) {
+    public function checkCuti($id) {
+        // if($request->employee_id) {
             $reqCheck = DB::table('leaves_admin')
                 ->join('employee','leaves_admin.user_id','=','employee.employee_id')
                 ->select('leaves_admin.user_id',
@@ -153,17 +172,17 @@ class PermitController extends Controller
                         'employee.department',
                         'leaves_admin.leave_type',
                         'leaves_admin.day',
-                        'leaves_admin.reason',
+                        'leaves_admin.leave_reason',
                         'leaves_admin.updated_at',
                         'leaves_admin.data_status'
                         )
-                ->where('employee_id','='.$request->employee_id)
+                ->where('employee_id','=',$id)
                 ->get();
             $output = [
                 'dataIzin' => $reqCheck
             ];
             return response()->json($output);
-        }
+        // }
         // return Datatables::of($reqCheck)->make(true);
     }
 
