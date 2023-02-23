@@ -1,10 +1,10 @@
 @extends('layouts.navbar')
-@section('title', 'Check Cuti')
-@section('title-content', 'CHECK IZIN CUTI')
+@section('title', 'Check Izin Sakit')
+@section('title-content', 'CHECK IZIN SAKIT')
 
 @section('content')
 @csrf
-<form onsubmit="return false" class="needs-validation" id="form_check" method="get">
+<form onsubmit="return false" class="needs-validation" id="form_checkSakit" method="get">
     <div class="col pb-4">
         {{-- <div class="col-md-3">
             <h6>Kategori Izin</h6>
@@ -28,14 +28,14 @@
 </form>
 
 {{-- MODAL LIST IZIN - USER CHECK  --}}
-<div class="modal fade bs-example-modal-lg" id="modalsCheck" tab-index="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalsCheckSick" tab-index="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modalsCheckTitle">List Izin Cuti</h4>
+                <h4 class="modal-title">List Izin Sakit</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-hover datatable" id="dataTables_check">
+                <table class="table table-hover datatable" id="dataTables_checkSick">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -44,12 +44,10 @@
                             <th>Dept</th>
                             <th>Tipe</th>
                             <th>Hari</th>
-                            <th width="40%">Ket</th>
+                            {{-- <th width="40%">Ket</th> --}}
                             <th>Tgl Izin</th>
                             <th>Status</th>
                             <th>Action</th>
-                            {{-- <th>Ket Status</th> --}}
-                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -92,15 +90,15 @@
                         var x=data[0]["employee_id"];
                         $("#rf_idCheck").val(data[0]["employee_id"]);
                         $("#nik_Check").val(data[0]["employee_id"]);
-                        $('#modalsCheck').modal('show');
-                        getIzinDetail(x);
+                        $('#modalsCheckSick').modal('show');
+                        getSakitDetail(x);
                         // $("#check_type").focus();
                     }
                 },error: function(data){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Input NIK Terlebih Dulu'
+                        text: 'Belum ada izin sakit nih !!'
                         });
                 }
             });
@@ -108,9 +106,9 @@
     });
 
 
-    function getIzinDetail(id) {
+    function getSakitDetail(id) {
             console.log(id);
-    var route = "{{ route('epermit/checkdtlpermit', ':id') }}";
+    var route = "{{ route('epermit/checkdtlsakit', ':id') }}";
     route = route.replace(':id', id);
     $.ajax({
         url: route,
@@ -121,23 +119,23 @@
             var detailDataset = [];
             count = 0;
             // $('#dataTables_check').DataTable().clear().destroy();
-            for (var i = 0; i < data['dataIzin'].length; i++) {
+            for (var i = 0; i < data['dataSakit'].length; i++) {
                 count++;
                 detailDataset.push([
                     count,
-                    data['dataIzin'][i]['user_id'],
-                    data['dataIzin'][i]['name'],
-                    data['dataIzin'][i]['department'],
-                    data['dataIzin'][i]['leave_type'],
-                    data['dataIzin'][i]['day'],
-                    data['dataIzin'][i]['leave_reason'],
-                    data['dataIzin'][i]['updated_at'],
-                    data['dataIzin'][i]['data_status'],
+                    data['dataSakit'][i]['user_id'],
+                    data['dataSakit'][i]['name'],
+                    data['dataSakit'][i]['department'],
+                    data['dataSakit'][i]['sick_type'],
+                    data['dataSakit'][i]['day'],
+                    // data['dataSakit'][i]['leave_reason'],
+                    data['dataSakit'][i]['updated_at'],
+                    data['dataSakit'][i]['data_status'],
                     '<button type="button" class="btn btn-danger mb-3" onclick="del_Checkpermit('+count+')">Hapus</button>'
                 ]);
 
             }
-            $('#dataTables_check').DataTable({
+            $('#dataTables_checkSick').DataTable({
                 "paging": false,
                 "scrollY": '250px',
                 "scrollCollapse": true,

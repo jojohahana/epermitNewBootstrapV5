@@ -44,9 +44,6 @@ class PermitController extends Controller
 
         $request->validate([
             'nik'                   => 'required|string|min:4|max:4',
-            // 'nama'               => 'required|string|max:50',
-            // 'dept'               => 'required|string|max:50',
-            // 'posisi'             => 'required|string|max:50',
             'leaves_type'           => 'required|string|max:50',
             'from_date'             => 'required|string|max:50',
             'to_date'               => 'required|string|max:50',
@@ -108,8 +105,8 @@ class PermitController extends Controller
         return view('forms.usersakit');
     }
 
-    // SAVE DATA IZIN SAKIT
 
+    // SAVE DATA IZIN SAKIT
     public function storeSakit(Request $request) {
         $request->validate([
             'nik'               => 'required|string|min:4|max:4',
@@ -163,8 +160,8 @@ class PermitController extends Controller
         return view('forms.checkcuti');
     }
 
+    // ++ Check Izin menampilkan status izin hanya smpai approval 1
     public function checkCuti($id) {
-        // if($request->employee_id) {
             $reqCheck = DB::table('leaves_admin')
                 ->join('employee','leaves_admin.user_id','=','employee.employee_id')
                 ->select('leaves_admin.user_id',
@@ -177,14 +174,43 @@ class PermitController extends Controller
                         'leaves_admin.data_status'
                         )
                 ->where('employee_id','=',$id)
+                ->where('leaves_admin.data_status','=','ACTIVE')
+                ->where('leaves_admin.stat_app2','=','Approve')
+                ->where('leaves_admin.stat_app3','=','Wait')
                 ->get();
             $output = [
                 'dataIzin' => $reqCheck
             ];
             return response()->json($output);
-        // }
-        // return Datatables::of($reqCheck)->make(true);
     }
 
+
+    // +++++ INDEX CHECK SAKIT +++++
+    public function indexCheckSakit() {
+        return view('forms.checkSakit');
+    }
+
+    // +++++ GET DATA SAKIT BY EMP ID +++++
+    public function checkSakit($id) {
+        $reqCheck = DB::table('leaves_sick')
+            ->join('employee','leaves_sick.user_id','=','employee.employee_id')
+            ->select('leaves_sick.user_id',
+                    'employee.name',
+                    'employee.department',
+                    'leaves_sick.sick_type',
+                    'leaves_sick.day',
+                    'leaves_sick.updated_at',
+                    'leaves_sick.data_status'
+                    )
+            ->where('employee_id','=',$id)
+            ->where('leaves_sick.data_status','=','ACTIVE')
+            // ->where('leaves_sick.stat_app2','=','Approve')
+            // ->where('leaves_sick.stat_app3','=','Wait')
+            ->get();
+        $output = [
+            'dataSakit' => $reqCheck
+        ];
+        return response()->json($output);
+}
 
 }

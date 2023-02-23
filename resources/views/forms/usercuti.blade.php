@@ -201,13 +201,15 @@ $(document).ready(function() {
                     location.reload(true);
 
                 },error: function(data){
-                    alert("Gagal Add Data")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Gagal Submit Izin'
+                    });
                 }
             });
 
     });
-
-
 </script>
 @endsection
 @endsection
