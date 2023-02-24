@@ -103,9 +103,12 @@
             Perhatikan Ketentuan Sebelum Mengajukan Cuti
           </div>
         <ul class="list-unstyled">
-            <li><h6>Cuti Tahunan    : <span>Hak cuti karyawan yang telah bekerja selama minimal 12 bulan tanpa terputus.</span></h6></li>
-            <li><h6>Cuti Besar      : <span>Hak cuti karyawan dengan masa kerja 5 tahun berturut-turut dan kelipatannya.</span></h6></li>
-            <li><h6>Cuti Khusus     : <span>Hak cuti karyawan dengan masa kerja 5 tahun berturut-turut dan kelipatannya.</span></h6></li>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Karyawan wajib mengajukan izin cuti maksimal H-3 sebelum tanggal cuti yang diajukan.</h6>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Jika mengajukan cuti tidak sesuai prosedur maka akan dihitung sebagai Cuti Non Prosedur.</h6>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Berikut jenis cuti berdasarkan kesepakatan manajemen dan FSPMI :</h6>
+            <ol>1. Cuti Tahunan : Hak cuti karyawan yang telah bekerja selama minimal 12 bulan tanpa terputus.</ol>
+            <ol>2. Cuti Besar : Hak cuti karyawan dengan masa kerja 5 tahun berturut-turut dan kelipatannya.</ol>
+            <ol>3. Cuti Khusus : Hak cuti yang diberikan kepada pekerja yang memiliki kepentingan mendesak atau kondisi tertentu sehingga mengharuskan untuk libur beberapa waktu.</ol>
         </ul>
     </div>
 </div>

@@ -85,12 +85,14 @@
     </div>
     {{-- Isi konten ketentuan pengambilan cuti  --}}
     <div class="col-xxl-6 col-lg-6">
-        <h6>Perhatikan Sebelum Mengajukan Izin Cuti</h6>
+        <div class="h5 pb-2 mb-4 text-danger border-bottom border-danger text-center">
+            Perhatikan Ketentuan Sebelum Mengajukan Izin Sakit
+          </div>
         <ul class="list-unstyled">
-            <li><h6>Ini belum muncul bullett nya</h6></li>
-            <ul>
-                <li>Ketentuan pertama</li>
-            </ul>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Karyawan wajib mengajukan izin sakit maksimal H+2 setelah masuk kerja.</h6>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Karyawan wajib melampirkan Surat Keterangan Dokter fakses BPJS untuk Rawat Jalan</h6>
+            <h6><i class="fa fa-check-square" aria-hidden="true"></i> Karyawan wajib melampirkan Surat Keterangan Rawat Inap dari klinik atau RS fakses BPJS.</h6>
+
         </ul>
     </div>
 </div>
