@@ -35,6 +35,7 @@ Route::controller(PermitController::class)->group(function () {
     Route::get('epermit/checkdtlpermit/{id}', 'checkCuti')->name('epermit/checkdtlpermit');
     Route::get('epermit/checksakit', 'indexCheckSakit')->name('epermit/checksakit');
     Route::get('epermit/checkdtlsakit/{id}', 'checkSakit')->name('epermit/checkdtlsakit');
+    Route::post('epermit/delCheckCuti/{employee_id}', 'delCheckSick')->name('epermit/delCheckCuti');
 
 });
 

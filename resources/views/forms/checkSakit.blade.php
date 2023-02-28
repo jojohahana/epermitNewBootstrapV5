@@ -39,6 +39,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>No Izin</th>
                             <th>NIK</th>
                             <th>Nama</th>
                             <th>Dept</th>
@@ -108,6 +109,8 @@
 
     function getSakitDetail(id) {
             console.log(id);
+            $('#dataTables_checkSick').dataTable().fnClearTable();
+            $('#dataTables_checkSick').dataTable().fnDestroy();
     var route = "{{ route('epermit/checkdtlsakit', ':id') }}";
     route = route.replace(':id', id);
     $.ajax({
@@ -121,26 +124,25 @@
             // $('#dataTables_check').DataTable().clear().destroy();
             for (var i = 0; i < data['dataSakit'].length; i++) {
                 count++;
+                var sick_id = data['dataSakit'][i]['sick_id'];
                 detailDataset.push([
                     count,
+                    data['dataSakit'][i]['sick_id'],
                     data['dataSakit'][i]['user_id'],
                     data['dataSakit'][i]['name'],
                     data['dataSakit'][i]['department'],
                     data['dataSakit'][i]['sick_type'],
                     data['dataSakit'][i]['day'],
-                    // data['dataSakit'][i]['leave_reason'],
                     data['dataSakit'][i]['updated_at'],
                     data['dataSakit'][i]['data_status'],
-                    '<button type="button" class="btn btn-danger mb-3" onclick="del_Checkpermit('+count+')">Hapus</button>'
+                    '<button type="button" class="btn btn-danger mb-3" onclick="del_Checkpermit('+sick_id+')">Hapus</button>'
                 ]);
-
             }
             $('#dataTables_checkSick').DataTable({
                 "paging": false,
                 "scrollY": '250px',
                 "scrollCollapse": true,
                 data: detailDataset
-
             });
         },error: function(data){
                     Swal.fire({
@@ -148,14 +150,34 @@
                         title: 'Oops...',
                         text: 'Data not found'
                         });
-                    // console.log(data);
                 }
 
     });
 }
 
 function del_Checkpermit(id){
-    console.log(id);
+    var route = "{{ route('epermit/delCheckCuti', ':id') }}";
+    route = route.replace(':id', id);
+    $.ajax({
+        url: route,
+        method: 'post',
+        success: function(data) {
+            console.log(data);
+            var emp_nik = data['nik'];
+            getSakitDetail(emp_nik);
+            Swal.fire({
+                        icon: 'success',
+                        title: 'Yuhuuu...',
+                        text: 'Success Deleted'
+                        });
+        },error: function(data){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data not found'
+                        });
+                }
+    });
 }
 </script>
 @endsection

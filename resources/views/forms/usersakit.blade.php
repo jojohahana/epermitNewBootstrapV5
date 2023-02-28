@@ -185,7 +185,7 @@ $(document).on("keypress", "#rf_id", function (e){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Gagal Submit Izin'
+                        text: 'Gagal Submit Izin Sakit'
                     });
                     // alert("Gagal Add Data")
                 }

@@ -6,14 +6,6 @@
 @csrf
 <form onsubmit="return false" class="needs-validation" id="form_check" method="get">
     <div class="col pb-4">
-        {{-- <div class="col-md-3">
-            <h6>Kategori Izin</h6>
-            <select class="js-example-basic-single col-sm-12" id="check_type" name="sick_type">
-                <option selected disabled>Pilih Kategori Izin</option>
-                    <option value="checkCuti">Izin Cuti</option>
-                    <option value="checkSakit">Izin Sakit</option>
-            </select>
-        </div> --}}
         <div class="col-md-3 pt-3">
           <h6>NIK</h6>
           <input class="form-control" id="rf_idCheck" name="rf_idCheck" autofocus type="text" autofocus placeholder="Masukkan NIK Anda">
@@ -159,6 +151,9 @@
 
 function del_Checkpermit(id){
     console.log(id);
+var route = "{{ route('epermit/delCheckCuti/', ':id') }}";
+route = route.replace(':id', id);
+
 }
 </script>
 @endsection

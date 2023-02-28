@@ -195,7 +195,6 @@ $(document).ready(function() {
                 type: "post",
                 data: $("#form_cuti").serialize(),
                 success: function(data){
-                    // alert("Success Add Data");
                     Swal.fire({
                         icon: 'success',
                         title: 'Happy Holiday !!',

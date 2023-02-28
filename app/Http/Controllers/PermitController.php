@@ -74,6 +74,8 @@ class PermitController extends Controller
 
         $cuti = leaves_admins::where('user_id','='.$request->employee_id)->first();
         if ($cuti === null) {
+
+
             $cuti = new leaves_admins;
             $cuti->user_id      = $request->nik;
             $cuti->leave_type   = $request->leaves_type;
@@ -81,10 +83,18 @@ class PermitController extends Controller
             $cuti->from_date    = Carbon::parse($fromdate)->format('Y-m-d');
             $todate             = $request->to_date;
             $cuti->to_date      = Carbon::parse($todate)->format('Y-m-d');
-            $cuti->leave_reason = $request->leave_reason;
             $cuti->day          = $request->tot_apply_cuti;
-            // $cuti->user_id      = $request->employee_id;
-            // $cuti->user_id      = $request->employee_id;
+            $currentDate = Carbon::now();
+            $submitDate = Carbon::parse($fromdate);
+            $totDay = $currentDate->diffInDays($submitDate,false);
+            // verifikasi maks  H-3
+            if ($totDay > -4) {
+                $catCuti = 'CP';
+            } else {
+                $catCuti = 'CNP';
+            }
+            $cuti->leave_reason = $request->leave_reason.''.$totDay;
+            $cuti->category     = $catCuti;
             $cuti->save();
 
               // DB::commit();
@@ -127,16 +137,23 @@ class PermitController extends Controller
                 . "$request->to_date \n"
                 . "<b>🌟 Lama Izin: </b>"
                 . "$request->tot_apply_sick hari\n";
-                // . "<b>📰 Ket Izin: </b>"
-                // . $request->leave_reason;
          Telegram::sendMessage([
             'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001883164282'),
             'parse_mode' => 'HTML',
             'text' => $text
         ]);
 
+        $get_last_no = leaves_sick::select('sick_id')
+                    ->orderBy('sick_id', 'desc')
+                    ->limit(1)
+                    ->get();
+
+            $sickno = $get_last_no[0]->sick_id + 1;
+
         $sakit = leaves_sick::where('user_id','=',$request->employee_id)->first();
         if ($sakit === null) {
+
+
             $sakit = new leaves_sick;
             $sakit->user_id     = $request->nik;
             $fromdate           = $request->from_date;
@@ -145,7 +162,19 @@ class PermitController extends Controller
             $sakit->to_date     = Carbon::parse($todate)->format('Y-m-d');
             $sakit->sick_type   = $request->sick_type;
             $sakit->day         = $request->tot_apply_sick;
+            $sakit->sick_id     = $sickno;
             $sakit->save();
+
+            // Insert Log Activity
+            date_default_timezone_set("Asia/Jakarta");
+                    $date = Carbon::now();
+                    $status = "ADD";
+                    $sick_id = $sickno;
+                    DB::table('leaves_sick_log')->insert([
+                        'id_leave_sick' => $sick_id,
+                        'created_date' => $date,
+                        'status_change' => $status
+                    ]);
 
             return response()->json(['success' => true]);
             return redirect()->route('epermit/formsakit');
@@ -184,6 +213,19 @@ class PermitController extends Controller
             return response()->json($output);
     }
 
+    public function delCheckSick($id) {
+        $delSickId = leaves_sick::where('sick_id',$id)
+            ->update(['data_status' => 'NOT ACTIVE']);
+        $nik = leaves_sick::where('sick_id',$id)
+            ->select('user_id')
+            ->first();
+        $output = [
+                'nik' => $nik->user_id,
+                'data' => 'Success'
+            ];
+            return response()->json($output);
+    }
+
 
     // +++++ INDEX CHECK SAKIT +++++
     public function indexCheckSakit() {
@@ -200,12 +242,11 @@ class PermitController extends Controller
                     'leaves_sick.sick_type',
                     'leaves_sick.day',
                     'leaves_sick.updated_at',
-                    'leaves_sick.data_status'
+                    'leaves_sick.data_status',
+                    'leaves_sick.sick_id'
                     )
             ->where('employee_id','=',$id)
             ->where('leaves_sick.data_status','=','ACTIVE')
-            // ->where('leaves_sick.stat_app2','=','Approve')
-            // ->where('leaves_sick.stat_app3','=','Wait')
             ->get();
         $output = [
             'dataSakit' => $reqCheck
