@@ -30,12 +30,14 @@ Route::controller(PermitController::class)->group(function () {
     // GENERATE NIK FROM RFID_TAG
     Route::get('epermit/getemployee/{id}', 'get_employee')->name('epermit/getemployee');
 
-
+    // 1. ROUTE ACTIVITY CUTI
     Route::get('epermit/checkpermit', 'indexCheck')->name('epermit/checkpermit');
     Route::get('epermit/checkdtlpermit/{id}', 'checkCuti')->name('epermit/checkdtlpermit');
+    Route::post('epermit/delCheckCuti/{employee_id}', 'delCheckLeave')->name('epermit/delCheckCuti');
+    // 2. ROUTE ACTIVITY IZIN SAKIT
     Route::get('epermit/checksakit', 'indexCheckSakit')->name('epermit/checksakit');
     Route::get('epermit/checkdtlsakit/{id}', 'checkSakit')->name('epermit/checkdtlsakit');
-    Route::post('epermit/delCheckCuti/{employee_id}', 'delCheckSick')->name('epermit/delCheckCuti');
+    Route::post('epermit/delCheckSick/{employee_id}', 'delCheckSick')->name('epermit/delCheckSick');
 
 });
 

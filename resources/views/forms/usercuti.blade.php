@@ -71,14 +71,6 @@
                     <label class="form-label" for="tot_apply_cuti">Cuti Diambil</label>
                     <input class="form-control" id="tot_apply_cuti" name="tot_apply_cuti" readonly type="text" value="" required="">
                 </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="validationCustom01">Sisa Cuti</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label" for="validationCustom01">Total Cuti</label>
-                    <input class="form-control" id="validationCustom01" disabled="" type="text" value="" required="">
-                </div>
             </div>
             <div class="col pb-4">
                 <h6>Keterangan Cuti <span class="text-danger">*</span></h6>

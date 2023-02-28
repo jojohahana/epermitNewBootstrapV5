@@ -71,6 +71,13 @@ class PermitController extends Controller
             'text' => $text
         ]);
 
+        // Get Last Number Izin Cuti
+        $get_last_noCuti = leaves_admins::select('leave_id')
+                    ->orderBy('leave_id', 'desc')
+                    ->limit(1)
+                    ->get();
+            $leaveNo = $get_last_noCuti[0]->leave_id + 1;
+
 
         $cuti = leaves_admins::where('user_id','='.$request->employee_id)->first();
         if ($cuti === null) {
@@ -95,7 +102,19 @@ class PermitController extends Controller
             }
             $cuti->leave_reason = $request->leave_reason.''.$totDay;
             $cuti->category     = $catCuti;
+            $cuti->leave_id     = $leaveNo;
             $cuti->save();
+
+            // Insert Log Activity
+            date_default_timezone_set("Asia/Jakarta");
+                    $date = Carbon::now();
+                    $status = "ADD";
+                    $leave_id = $leaveNo;
+                    DB::table('leaves_admin_log')->insert([
+                        'id_leave' => $leave_id,
+                        'status_change' => $status,
+                        'created_date' => $date
+                    ]);
 
               // DB::commit();
             return response()->json(['success' => true]);
@@ -105,6 +124,34 @@ class PermitController extends Controller
             return response()->json(['errors' => true]);
             return redirect()->back();
         }
+    }
+
+    //Delete Izin Cuti by User
+    public function delCheckLeave($id) {
+
+        $delSickId = leaves_admins::where('leave_id',$id)
+            ->update(['data_status' => 'NOT ACTIVE']);
+        $nik = leaves_admins::where('leave_id',$id)
+            ->select('user_id')
+            ->first();
+
+            // Insert Log Activity
+            date_default_timezone_set("Asia/Jakarta");
+                    $date = Carbon::now();
+                    $status = "VOID";
+                    $leave_id = $id;
+                    DB::table('leaves_admin_log')->insert([
+                        'id_leave' => $leave_id,
+                        'created_date' => $date,
+                        'status_change' => $status
+                    ]);
+
+        $output = [
+                'nik' => $nik->user_id,
+                'data' => 'Success'
+            ];
+            return response()->json($output);
+            return redirect()->route('epermit/formsakit');
     }
 
     public function updatedActivity() {
@@ -143,11 +190,11 @@ class PermitController extends Controller
             'text' => $text
         ]);
 
+        // Get Last Number Izin Sakit
         $get_last_no = leaves_sick::select('sick_id')
                     ->orderBy('sick_id', 'desc')
                     ->limit(1)
                     ->get();
-
             $sickno = $get_last_no[0]->sick_id + 1;
 
         $sakit = leaves_sick::where('user_id','=',$request->employee_id)->first();
@@ -200,12 +247,13 @@ class PermitController extends Controller
                         'leaves_admin.day',
                         'leaves_admin.leave_reason',
                         'leaves_admin.updated_at',
-                        'leaves_admin.data_status'
+                        'leaves_admin.data_status',
+                        'leaves_admin.leave_id'
                         )
                 ->where('employee_id','=',$id)
                 ->where('leaves_admin.data_status','=','ACTIVE')
-                ->where('leaves_admin.stat_app2','=','Approve')
-                ->where('leaves_admin.stat_app3','=','Wait')
+                // ->where('leaves_admin.stat_app2','=','Approve')
+                // ->where('leaves_admin.stat_app3','=','Wait')
                 ->get();
             $output = [
                 'dataIzin' => $reqCheck
@@ -213,18 +261,7 @@ class PermitController extends Controller
             return response()->json($output);
     }
 
-    public function delCheckSick($id) {
-        $delSickId = leaves_sick::where('sick_id',$id)
-            ->update(['data_status' => 'NOT ACTIVE']);
-        $nik = leaves_sick::where('sick_id',$id)
-            ->select('user_id')
-            ->first();
-        $output = [
-                'nik' => $nik->user_id,
-                'data' => 'Success'
-            ];
-            return response()->json($output);
-    }
+
 
 
     // +++++ INDEX CHECK SAKIT +++++
@@ -252,6 +289,33 @@ class PermitController extends Controller
             'dataSakit' => $reqCheck
         ];
         return response()->json($output);
-}
+    }
+
+    //Delete Izin Sakit by User
+    public function delCheckSick($id) {
+        $delSickId = leaves_sick::where('sick_id',$id)
+            ->update(['data_status' => 'NOT ACTIVE']);
+        $nik = leaves_sick::where('sick_id',$id)
+            ->select('user_id')
+            ->first();
+
+            // Insert Log Activity
+            date_default_timezone_set("Asia/Jakarta");
+                    $date = Carbon::now();
+                    $status = "VOID";
+                    $sick_id = $id;
+                    DB::table('leaves_sick_log')->insert([
+                        'id_leave_sick' => $sick_id,
+                        'created_date' => $date,
+                        'status_change' => $status
+                    ]);
+
+        $output = [
+                'nik' => $nik->user_id,
+                'data' => 'Success'
+            ];
+            return response()->json($output);
+            return redirect()->route('epermit/formsakit');
+    }
 
 }

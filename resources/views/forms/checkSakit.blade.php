@@ -121,7 +121,6 @@
             // console.log();
             var detailDataset = [];
             count = 0;
-            // $('#dataTables_check').DataTable().clear().destroy();
             for (var i = 0; i < data['dataSakit'].length; i++) {
                 count++;
                 var sick_id = data['dataSakit'][i]['sick_id'];
@@ -156,13 +155,13 @@
 }
 
 function del_Checkpermit(id){
-    var route = "{{ route('epermit/delCheckCuti', ':id') }}";
+    var route = "{{ route('epermit/delCheckSick', ':id') }}";
     route = route.replace(':id', id);
     $.ajax({
         url: route,
         method: 'post',
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             var emp_nik = data['nik'];
             getSakitDetail(emp_nik);
             Swal.fire({

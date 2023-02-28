@@ -32,6 +32,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>No Izin</th>
                             <th>NIK</th>
                             <th>Nama</th>
                             <th>Dept</th>
@@ -103,6 +104,8 @@
 
     function getIzinDetail(id) {
             console.log(id);
+            $('#dataTables_check').dataTable().fnClearTable();
+            $('#dataTables_check').dataTable().fnDestroy();
     var route = "{{ route('epermit/checkdtlpermit', ':id') }}";
     route = route.replace(':id', id);
     $.ajax({
@@ -111,13 +114,14 @@
         dataType: 'json',
         success: function(data) {
             // console.log();
-            var detailDataset = [];
+            var detailDataCuti = [];
             count = 0;
-            // $('#dataTables_check').DataTable().clear().destroy();
             for (var i = 0; i < data['dataIzin'].length; i++) {
                 count++;
-                detailDataset.push([
+                var leave_id = data['dataIzin'][i]['leave_id'];
+                detailDataCuti.push([
                     count,
+                    data['dataIzin'][i]['leave_id'],
                     data['dataIzin'][i]['user_id'],
                     data['dataIzin'][i]['name'],
                     data['dataIzin'][i]['department'],
@@ -126,7 +130,7 @@
                     data['dataIzin'][i]['leave_reason'],
                     data['dataIzin'][i]['updated_at'],
                     data['dataIzin'][i]['data_status'],
-                    '<button type="button" class="btn btn-danger mb-3" onclick="del_Checkpermit('+count+')">Hapus</button>'
+                    '<button type="button" class="btn btn-danger mb-3" onclick="del_checkCuti('+leave_id+')">Hapus</button>'
                 ]);
 
             }
@@ -134,7 +138,7 @@
                 "paging": false,
                 "scrollY": '250px',
                 "scrollCollapse": true,
-                data: detailDataset
+                data: detailDataCuti
 
             });
         },error: function(data){
@@ -149,12 +153,32 @@
     });
 }
 
-function del_Checkpermit(id){
-    console.log(id);
-var route = "{{ route('epermit/delCheckCuti/', ':id') }}";
-route = route.replace(':id', id);
-
+function del_checkCuti(id){
+    var route = "{{ route('epermit/delCheckCuti', ':id') }}";
+    route = route.replace(':id', id);
+    $.ajax({
+        url: route,
+        method: 'post',
+        success: function(data) {
+            // console.log(data);
+            var emp_nik = data['nik'];
+            getIzinDetail(emp_nik);
+            Swal.fire({
+                        icon: 'success',
+                        title: 'Yuhuuu...',
+                        text: 'Success Deleted'
+                        });
+        },error: function(data){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Data not found'
+                        });
+                }
+    });
 }
+
+
 </script>
 @endsection
 @endsection
