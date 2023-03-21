@@ -100,7 +100,7 @@ class PermitController extends Controller
             } else {
                 $catCuti = 'CNP';
             }
-            $cuti->leave_reason = $request->leave_reason.''.$totDay;
+            $cuti->leave_reason = $request->leave_reason;
             $cuti->category     = $catCuti;
             $cuti->leave_id     = $leaveNo;
             $cuti->save();
