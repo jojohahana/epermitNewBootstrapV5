@@ -47,7 +47,7 @@
                             <th>Hari</th>
                             {{-- <th width="40%">Ket</th> --}}
                             <th>Tgl Izin</th>
-                            <th>Status</th>
+                            <th>Apprrove</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -133,7 +133,7 @@
                     data['dataSakit'][i]['sick_type'],
                     data['dataSakit'][i]['day'],
                     data['dataSakit'][i]['updated_at'],
-                    data['dataSakit'][i]['data_status'],
+                    data['dataSakit'][i]['stat_app2'],
                     '<button type="button" class="btn btn-danger mb-3" onclick="del_Checkpermit('+sick_id+')">Hapus</button>'
                 ]);
             }

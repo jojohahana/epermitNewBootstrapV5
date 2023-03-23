@@ -247,7 +247,7 @@ class PermitController extends Controller
                         'leaves_admin.day',
                         'leaves_admin.leave_reason',
                         'leaves_admin.updated_at',
-                        'leaves_admin.data_status',
+                        'leaves_admin.stat_app2',
                         'leaves_admin.leave_id'
                         )
                 ->where('employee_id','=',$id)
@@ -279,7 +279,7 @@ class PermitController extends Controller
                     'leaves_sick.sick_type',
                     'leaves_sick.day',
                     'leaves_sick.updated_at',
-                    'leaves_sick.data_status',
+                    'leaves_sick.stat_app2',
                     'leaves_sick.sick_id'
                     )
             ->where('employee_id','=',$id)

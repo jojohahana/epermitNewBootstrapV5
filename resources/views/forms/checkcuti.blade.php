@@ -40,7 +40,7 @@
                             <th>Hari</th>
                             <th width="40%">Ket</th>
                             <th>Tgl Izin</th>
-                            <th>Status</th>
+                            <th>Approve</th>
                             <th>Action</th>
                             {{-- <th>Ket Status</th> --}}
                             {{-- <th>Action</th> --}}
@@ -129,7 +129,7 @@
                     data['dataIzin'][i]['day'],
                     data['dataIzin'][i]['leave_reason'],
                     data['dataIzin'][i]['updated_at'],
-                    data['dataIzin'][i]['data_status'],
+                    data['dataIzin'][i]['stat_app2'],
                     '<button type="button" class="btn btn-danger mb-3" onclick="del_checkCuti('+leave_id+')">Hapus</button>'
                 ]);
 
