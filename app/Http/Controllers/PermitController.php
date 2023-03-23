@@ -53,7 +53,7 @@ class PermitController extends Controller
          ]);
 
         // Push telegram notif here
-        $text = "<b>📢  New Permit Submitted !!  📢</b>\n\n"
+        $text = "<b>📢  IZIN CUTI BARU DIAJUKAN !!  📢</b>\n\n"
                 . "<b>💁 NIK Karyawan: </b>"
                 . "$request->nik\n"
                 . "<b>👉 Jenis Izin: </b>"
@@ -174,10 +174,10 @@ class PermitController extends Controller
         ]);
 
         // Push telegram notif here
-        $text = "<b>📢  New Permit Submitted !!  📢</b>\n\n"
+        $text = "<b>📢  IZIN SAKIT BARU DIAJUKAN !!  📢</b>\n\n"
                 . "<b>💁 NIK Karyawan: </b>"
                 . "$request->nik\n"
-                . "<b>👉 Jenis Izin: </b>"
+                . "<b>👉 Jenis Izin Sakit: </b>"
                 . "$request->sick_type\n"
                 . "<b>📅 Tanggal Izin: \n</b>"
                 . "       $request->from_date  -  "
@@ -252,9 +252,9 @@ class PermitController extends Controller
                         )
                 ->where('employee_id','=',$id)
                 ->where('leaves_admin.data_status','=','ACTIVE')
-                // ->where('leaves_admin.stat_app2','=','Approve')
-                // ->where('leaves_admin.stat_app3','=','Wait')
+                ->where('leaves_admin.stat_app3','=','Wait')
                 ->get();
+                // ->where('leaves_admin.stat_app2','=','Approve')
             $output = [
                 'dataIzin' => $reqCheck
             ];
@@ -284,6 +284,7 @@ class PermitController extends Controller
                     )
             ->where('employee_id','=',$id)
             ->where('leaves_sick.data_status','=','ACTIVE')
+            ->where('leaves_sick.stat_app3','=','Wait')
             ->get();
         $output = [
             'dataSakit' => $reqCheck
