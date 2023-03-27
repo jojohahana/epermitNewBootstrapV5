@@ -48,8 +48,8 @@ class PermitController extends Controller
             'from_date'             => 'required|string|max:50',
             'to_date'               => 'required|string|max:50',
             'leave_reason'          => 'required|string|max:100',
-            'tot_apply_cuti'        => 'required|string|max:50'
-         //    'sisaCuti'           => 'required|string|max:50',
+            'tot_apply_cuti'        => 'required|string|max:50',
+            'remain_cuti'           => 'required|string|max:50'
          ]);
 
         // Push telegram notif here
@@ -91,6 +91,7 @@ class PermitController extends Controller
             $todate             = $request->to_date;
             $cuti->to_date      = Carbon::parse($todate)->format('Y-m-d');
             $cuti->day          = $request->tot_apply_cuti;
+            $cuti->remain_cuti  = $request->remain_cuti;
             $currentDate = Carbon::now();
             $submitDate = Carbon::parse($fromdate);
             $totDay = $currentDate->diffInDays($submitDate,false);

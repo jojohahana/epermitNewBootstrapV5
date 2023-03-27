@@ -16,6 +16,7 @@ class leaves_admins extends Model
         'from_date',
         'to_date',
         'day',
+        'remain_cuti',
         'data_status',
         'leave_reason',
         'stat_app1',

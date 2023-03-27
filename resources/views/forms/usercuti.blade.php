@@ -71,6 +71,14 @@
                     <label class="form-label" for="tot_apply_cuti">Cuti Diambil</label>
                     <input class="form-control" id="tot_apply_cuti" name="tot_apply_cuti" readonly type="text" value="" required="">
                 </div>
+                <div class="col-md-3">
+                    <label class="form-label" for="tot_apply_cuti">Total Cuti</label>
+                    <input class="form-control" id="tot_cuti" name="tot_cuti" readonly type="text" value="" required="">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label" for="tot_apply_cuti">Sisa Cuti</label>
+                    <input class="form-control" id="remain_cuti" name="remain_cuti" readonly type="text" value="" required="">
+                </div>
             </div>
             <div class="col pb-4">
                 <h6>Keterangan Cuti <span class="text-danger">*</span></h6>
@@ -134,12 +142,15 @@ $(document).ready(function() {
         onSelect: function(){
             var from    =   $("#from_date").val();
             var to      =   $("#to_date").val();
+            var ttl_cuti = $('#tot_cuti').val();
 
             var dt1 = new Date(from);
             var dt2 = new Date(to);
             var tot_time = dt2.getTime() - dt1.getTime();
             var tot_days = (tot_time / (1000 * 3600 * 24))+1;
+            var remain_cuti = (ttl_cuti - tot_days);
             $("#tot_apply_cuti").val(tot_days);
+            $('#remain_cuti').val(remain_cuti);
         }
     });
 });
@@ -168,6 +179,7 @@ $(document).ready(function() {
                         $("#nama").val(data[0]["name"]);
                         $("#dept").val(data[0]["department"]);
                         $("#posisi").val(data[0]["position"]);
+                        $('#tot_cuti').val(data[0]["ttl_cuti"]);
                         $("#leaves_type").focus();
                     }
                 },error: function(data){
