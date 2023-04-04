@@ -146,8 +146,15 @@ $(document).ready(function() {
 
             var dt1 = new Date(from);
             var dt2 = new Date(to);
-            var tot_time = dt2.getTime() - dt1.getTime();
-            var tot_days = (tot_time / (1000 * 3600 * 24))+1;
+            var tot_days = 0;
+            var current_date = dt1;
+            while (current_date <= dt2) {
+                var day = current_date.getDay();
+                if (day !== 0 && day !== 6) { // exclude weekends
+                    tot_days++;
+                }
+                current_date.setDate(current_date.getDate() + 1);
+            }
             var remain_cuti = (ttl_cuti - tot_days);
             $("#tot_apply_cuti").val(tot_days);
             $('#remain_cuti').val(remain_cuti);
@@ -216,6 +223,26 @@ $(document).ready(function() {
             });
 
     });
+
+
+    //Disable Weeekends
+    (function($) {
+        "use strict";
+        var disabledDays = [0, 6];
+
+        $('#from_date, #to_date').datepicker({
+            language: 'en',
+            onRenderCell: function (date, cellType) {
+                if (cellType == 'day') {
+                    var day = date.getDay(),
+                        isDisabled = disabledDays.indexOf(day) != -1;
+                    return {
+                        disabled: isDisabled
+                    }
+                }
+            }
+        });
+    })(jQuery);
 </script>
 @endsection
 @endsection
