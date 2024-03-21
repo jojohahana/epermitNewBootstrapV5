@@ -23,7 +23,7 @@ class PermitController extends Controller
     }
 
     // GENERATE NIK DATA KARYAWAN
-    public function get_employee($nik){
+    public function get_employee($nik){ 
         if (!empty($nik)) {
             $employee = DB::table('employee')
             ->where('data_status', '=','ACTIVE')
